@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		<#if tId??>
+			SELECT
+				t.c_id AS "cId",
+				t.parent_id AS "pId",			
+				t.c_name AS "cName",
+				t.c_order as "cOrder"
+			FROM
+				sys_tree_code t
+			where t.t_id=:tId
+			ORDER BY
+				t.c_order ASC
+		<#else>
+			SELECT
+				t.c_id AS "cId",
+				t.parent_id AS "pId",			
+				t.c_name AS "cName",
+				t.c_order as "cOrder"
+			FROM
+				sys_tree_code t
+			where t.t_id=''
+		</#if>
+		
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.c_id AS "cId",
+			t.c_name AS "cName",
+			t.c_order AS "cOrder",
+			t.parent_id AS "parentId"
+		FROM
+			sys_tree_code t
+		WHERE
+			t.c_id =:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_tree_code (c_id,c_name,c_order,parent_id,t_id) values (?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="cId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="cName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="cOrder" type="java.lang.String"></sqlParm>
+		<sqlParm binding="parentId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tId" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_tree_code set 
+		c_name=?,
+		c_order=?
+		where c_id=?
+		]]>
+		</sql>
+		<sqlParm binding="cName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="cOrder" type="java.lang.String"></sqlParm>
+		<sqlParm binding="cId" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_tree_code  where c_id=:delId
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 列表 -->
+	<query id="comboboxCascade_type" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.c_name as "code_name",
+			t.c_id as "code_value"
+		FROM
+			sys_tree_code t
+		left join sys_tree_type tp on tp.t_id=t.t_id
+		where t.parent_id='0' and tp.t_code=:ctype_code
+		order by t.c_order asc
+		]]>
+		</sql>
+	</query>
+	<!-- 列表 -->
+	<query id="comboboxCascade_code" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.c_name as "code_name",
+			t.c_id as "code_value"
+		FROM
+			sys_tree_code t
+		where t.parent_id=:pId
+		order by t.c_order asc
+		]]>
+		</sql>
+	</query>
+</query-infor>

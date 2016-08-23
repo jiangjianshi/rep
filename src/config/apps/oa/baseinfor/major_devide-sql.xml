@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 项目分工列表- 弹出分工窗口 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.apply_major_id AS "majorId",
+			t.major_name AS "majorName",
+			t.relation_role AS "relRole",
+			amp.check_user as "checkUser",
+			u1.realname as "checkUserName",
+			amp.proofread_user as "proofreadUser",
+			u2.realname as "proofreadUserName",
+			amp.pro_id as "proId"
+		FROM
+			apply_major t
+			left JOIN apply_major_pro amp on amp.major_id=t.apply_major_id and amp.pro_id=:proId
+			left join sys_user u1 on u1.user_id=amp.check_user
+			left join sys_user u2 on u2.user_id=amp.proofread_user
+		ORDER BY
+			t.order_code ASC
+		]]>
+		</sql>
+	</query>
+	<!-- 项目分工 - 右侧显示列表 -->
+	<query id="divide_dataGrid" type="search">
+		<sql>
+		<![CDATA[ 
+		<#if proId??>
+			SELECT
+				t.apply_major_id AS "majorId",
+				t.major_name AS "majorName",
+				t.relation_role AS "relRole",
+				amp.check_user as "checkUser",
+				u1.realname as "checkUserName",
+				amp.proofread_user as "proofreadUser",
+				u2.realname as "proofreadUserName",
+				amp.pro_id as "proId"
+			FROM
+				apply_major t
+				inner JOIN apply_major_pro amp on amp.major_id=t.apply_major_id and amp.pro_id=:proId
+				left join sys_user u1 on u1.user_id=amp.check_user
+				left join sys_user u2 on u2.user_id=amp.proofread_user
+			ORDER BY
+				t.order_code ASC
+		<#else>
+			SELECT * from	apply_major t where t.apply_major_id='nullDataGrid'
+		</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- 列表 -->
+	<query id="getUserByRoleId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			u.user_id as "userId",
+			u.realname as "realName",
+			u.username as "userName"	
+		FROM
+			sys_user u
+		LEFT JOIN sys_user_role ur ON ur.user_id = u.user_id and ur.role_code=:roleId
+		where u.pro_id is null
+		]]>
+		</sql>
+	</query>
+	<query id="clearByProId" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from apply_major_pro where pro_id=:proId
+		]]>
+		</sql>
+	</query>
+	<query id="add" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO apply_major_pro 
+		(pro_major_id,pro_id,major_id,check_user,check_result,proofread_user) 
+		VALUES 
+		(?,?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pro_major_id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pro_id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="major_id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="check_user" type="java.lang.String"></sqlParm>
+		<sqlParm binding="check_result" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proofread_user" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

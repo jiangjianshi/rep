@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/liushengit.rep/!svn/ver/117/trunk/rep/src/com/css/sysbase/dao
+END
+CommonManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/sysbase/dao/CommonManager.java
+END
+SysDeptManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/liushengit.rep/!svn/ver/115/trunk/rep/src/com/css/sysbase/dao/SysDeptManager.java
+END
+SysRightManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/110/trunk/rep/src/com/css/sysbase/dao/SysRightManager.java
+END
+SysUserManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/liushengit.rep/!svn/ver/114/trunk/rep/src/com/css/sysbase/dao/SysUserManager.java
+END
+SysRoleManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/liushengit.rep/!svn/ver/117/trunk/rep/src/com/css/sysbase/dao/SysRoleManager.java
+END

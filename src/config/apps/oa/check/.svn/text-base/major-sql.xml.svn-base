@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<query id="getMajorInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT	t.check_result,
+			c1.code_name as "checkResult",
+			u1.realname as "checkUser",
+			u1.user_id as "checkUserId",
+			u2.realname as "proofreadUser",
+			u2.user_id as "proofreadUserId",
+			major.major_name as "majorName"
+		FROM
+			apply_major_pro t
+			left JOIN sys_user u1 on u1.user_id=t.check_user
+			left JOIN sys_user u2 on u2.user_id=t.proofread_user
+			left JOIN apply_major major on major.apply_major_id = t.major_id
+			left JOIN sys_code c1 on c1.code_value=t.check_result and c1.ctype_code='major_check_status'
+		WHERE t.pro_id = :proId
+			and major_id = :majorId
+		]]>
+		</sql>
+	</query>
+	
+</query-infor>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 权限列表 -->
+	<query id="rightList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id as "pkId",
+			t.right_code AS "rightCode",
+			t.p_code AS "pCode",
+			t.right_name AS "rightName",
+			t.right_url AS "rightUrl",
+			t.right_type as "rightType",
+			t.order_code as "orderCode"
+		FROM
+			sys_right t
+		where t.right_type='0'
+		order by t.order_code asc
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 动作权限列表 -->
+	<query id="rightPointList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "rightId",
+			t.right_code AS "rightCode",
+			t.right_name AS "rightName",
+			t.order_code AS "orderCode"
+		FROM
+			sys_right t
+		WHERE
+			t.p_code = :pCode
+		ORDER BY
+			t.order_code ASC
+		]]>
+		</sql>
+	</query>
+	<!-- 系统菜单 -->
+	<query id="sysLeftMenuTree" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT DISTINCT
+			t.pk_id as "pkId",
+			t.right_code AS "rightCode",
+			t.p_code AS "pCode",
+			t.right_name AS "rightName",
+			t.right_url AS "rightUrl",
+			t.right_type as "rightType",
+			t.order_code as "orderCode"			
+		FROM
+			sys_right t
+		left join sys_role_right rr on rr.right_code=t.right_code and rr.role_code in (:roleCodes)	
+		where rr.role_code in (:roleCodes)	and t.right_type='0'
+		order by t.order_code asc
+		]]>
+		</sql>
+	</query>
+	<query id="roleRightTree" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id as "pkId",
+			t.right_code AS "rightCode",
+			t.p_code AS "pCode",
+			t.right_name AS "rightName",
+			t.right_url AS "rightUrl",
+			t.right_type as "rightType",
+			t.order_code as "orderCode",
+			r.role_code as "roleCode"
+		FROM
+			sys_right t
+		left join sys_role_right rr on rr.right_code=t.right_code and rr.role_code=:roleCode
+		left join sys_role r on r.role_code=rr.role_code
+		where 1=1 
+		order by t.order_code asc
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 添加中间表 -->
+	<query id="addRoleRight" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_role_right (
+		pk_id,role_code,right_code
+		) values (
+		?,?,?
+		)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="rightCode" type="java.lang.String"></sqlParm>
+	</query>
+	<query id="delRoleRight_by_role" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_role_right where role_code = ?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	<query id="delRoleRight_by_right" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_role_right where right_code = ?
+		]]>
+		</sql>
+		<sqlParm binding="rightCode" type="java.lang.String"></sqlParm>
+	</query>
+	<query id="isHaveSubRight_by_right" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT * from sys_right t where t.p_code = :rightCode
+		]]>
+		</sql>
+	</query>
+	
+	
+	<!-- [用户动作资源]缓存 -->
+	<query id="rightPointsCache" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT DISTINCT
+			t.right_code AS "rightCode",
+			t.right_name AS "rightName"
+		FROM
+			sys_right t
+		left join sys_role_right rr on rr.right_code=t.right_code and rr.role_code in (:roleCodes)	
+		where rr.role_code in (:roleCodes)	
+		and t.right_type='1'
+		order by rightCode asc
+		]]>
+		</sql>
+	</query>
+	
+</query-infor>

@@ -1,0 +1,43 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript">
+var proType =  "${proType}";
+</script>
+<script type="text/javascript" src="${basePath}/oa/baseinfor/projectfileList.js"></script>
+</head>
+<body>
+	<form id="submitForm">
+		<input type="hidden" name="proType" value="${proType}"/>
+		<input type="hidden" id="proFileId" name="proFileId" value=""/>
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+			<tr>
+				<td class="label" style="width: 80px;" align="right">资料名称:</td>
+				<td><input id="fileName" name="fileName"
+						class="easyui-validatebox class1" data-options="required:true" 
+						type="text" style="width: 600px;"/></td>
+			</tr>
+			<tr>
+				<td style="width: 80px;" align="right">操作:</td>
+				<td align="left">
+					<a href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-save" onclick="save()">保存</a>
+					<a id="btn" href="#"
+						class="easyui-linkbutton" onClick="edit();"
+						data-options="iconCls:'icon-edit'">编辑</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div id="toolbar" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="del();"
+					data-options="iconCls:'icon-remove'">删除</a></td>
+			</tr>
+		</table>
+	</div>
+	<table id="dataGrid"></table>
+</body>
+</html>

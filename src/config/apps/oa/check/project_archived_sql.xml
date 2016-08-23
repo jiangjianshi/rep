@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<query id="archivedList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.pro_name AS "proName",
+			t.build_unit AS "buildUnit",
+			t.kcdw AS "kcdw",	
+			t.sjdw AS "sjdw",
+			t.total_area AS "totalArea",
+			t.total_amount AS "totalAmount",
+			t.accept_user AS "acceptUser",
+			t.receive_time AS "receiveTime",
+			t.accept_time AS "acceptTime",	
+			c.code_name as "flowStatus"
+		FROM
+			build_pro t
+		left JOIN sys_code c on c.ctype_code='project_flow_status' and c.code_value=t.flow_status
+		where 1=1 
+		<#if (proName?exists)>
+	   		and t.pro_name like concat("%",:proName,"%")
+    	</#if>
+    	<#if (flowStatus?exists)>
+	   		<#if (flowStatus=='yes')>
+	   			and t.flow_status = '1010'
+	   		<#elseif (flowStatus=='no')>		
+	   			and t.flow_status ！= '1010'
+    		</#if>
+    	</#if>
+		order by t.create_time desc
+		
+		]]>
+		</sql>
+	</query>
+</query-infor>

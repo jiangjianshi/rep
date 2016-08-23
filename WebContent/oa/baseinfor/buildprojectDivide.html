@@ -1,0 +1,53 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/oa/baseinfor/buildprojectDivide.js"></script>
+<script type="text/javascript">
+var onkeyup_prevTime = new Date().getTime();
+function onkeyupSearch(){
+	if(new Date().getTime()-onkeyup_prevTime > 500){
+		setTimeout("search();",500);
+	}
+	onkeyup_prevTime = new Date().getTime();
+}
+</script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div data-options="region:'west',border:true,split:true" title=""
+		style="width: 50%;">
+		<div id="toolbar" style="display: none;">
+			<table border="0">
+				<tr>
+					<td style="padding-left: 10px;"><a id="btn" href="#"
+						class="easyui-linkbutton" onClick="divide();"
+						data-options="iconCls:'icon-add'">分工</a></td>
+				</tr>
+			</table>
+			<form id="searchForm">
+				<table border="0">
+					<tr>
+						<td>工程名称:</td>
+						<td><input name="proName" id="proName"  onkeyup="onkeyupSearch();" placeholder="支持拼音首字母查询" style="width:130px;" />
+						</td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:search();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-search'">查询</a></td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:resetSearch();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-redo'">重置</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+	<!-- 分工列表 -->
+	<div data-options="region:'center',border:true,split:true" title="">
+		<div id="divide_toolbar" style="display: none;">
+			<div class="shadow">
+				<div class="msgbox1">以下为项目[<font id="proShowName" color=red>-</font>]的分工情况！</div>
+			</div>
+		</div>
+		<table id="divide_dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</html>

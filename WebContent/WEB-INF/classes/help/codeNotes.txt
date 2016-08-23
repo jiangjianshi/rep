@@ -1,0 +1,76 @@
+<#if (dataList?exists)&&(dataList?size>0)>
+	<#list dataList as obj>
+	</#list>
+</#if>
+
+<div class="shadow">
+	<div class="msgbox1">注：保存成功后，需重新登录，才能生效！</div>
+</div>
+
+formatter : function(value, row){
+	var buttonStr = "";
+	buttonStr += createButtonStr('edit',"setRole('"+row.userId+"');","设置角色");
+	return buttonStr;
+}
+
+<td width=30>&nbsp;</td>
+
+
+String curLoginUserId = CtrlUtils.getSessionUserId(request);
+
+where 1=1
+		<#if (proName?exists)>
+	   		and t.name like concat("%",:name,"%")
+    	</#if>
+
+DateUtils.getDateNow(null)
+
+String.valueOf(UUID.randomUUID())
+
+setGovOpinion.html
+GovopiniontCtrl  setGovOpinionSave() 上传文件事例
+String saveRootPath = PropertyConfigurerSon.getContextProperty("fileupload.path");
+		saveRootPath = PropertyConfigurerSon.replaceFileSeparator(saveRootPath);
+		
+		
+<select name="isHaveOpinion" id="isHaveOpinion" onchange="search();">
+							<option value="all" selected="selected">全部</option>
+							<option value="yes">已上传</option>
+							<option value="no">未上传</option>
+						</select>
+$.messager.progress('close');
+$.messager.progress({text:'系统处理中...'}); 
+$.messager.show({
+	title:'操作提示',
+	msg:result.msg,
+	timeout:2000,
+	showType:'show',
+	style:{
+		right:'',
+		top:document.body.scrollTop+document.documentElement.scrollTop,
+		bottom:''
+	}
+});
+
+
+
+rowStyler: function(index,row){
+	if (index%2==0){
+		return 'background-color:#FFE8E8;';
+	}
+},
+
+
+$('#cancelUpdateBtn').linkbutton('disable');
+$('#addNewBtn').linkbutton('enable');
+ data-options="disabled:true"
+ 
+ left JOIN sys_code c on c.ctype_code='project_flow_status' and c.code_value=t.flow_status
+ 
+ //下拉组件 的使用
+comboboxEx({
+	inputId:'#opinImp',
+	ctype_code:'zycd',
+	panelHeight:'auto',
+	editable:false
+});

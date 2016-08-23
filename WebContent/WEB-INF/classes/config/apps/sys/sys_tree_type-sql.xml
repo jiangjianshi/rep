@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.t_id as "tId" ,t.t_name as "tName" ,t.t_order as "tOrder" ,t.t_code as "tCode" from sys_tree_type t
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.t_id as "tId" ,t.t_name as "tName" ,t.t_order as "tOrder" ,t.t_code as "tCode" from sys_tree_type t where t.t_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_tree_type (t_id,t_name,t_order,t_code) values (?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="tId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tOrder" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tCode" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_tree_type set 
+		t_name=?,
+		t_order=?,
+		t_code=?
+		where t_id=?
+		]]>
+		</sql>
+		<sqlParm binding="tName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tOrder" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_tree_type  where t_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

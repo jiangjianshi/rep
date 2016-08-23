@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/liushengit.rep/!svn/ver/98/trunk/rep/src/config
+END
+spring-servlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/liushengit.rep/!svn/ver/46/trunk/rep/src/config/spring-servlet.xml
+END
+param.properties
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/liushengit.rep/!svn/ver/107/trunk/rep/src/config/param.properties
+END
+springAnnotation-hibernate.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/liushengit.rep/!svn/ver/109/trunk/rep/src/config/springAnnotation-hibernate.xml
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/liushengit.rep/!svn/ver/104/trunk/rep/src/config/jdbc.properties
+END

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,t.name as "name" ,t.short_name as "shortName" ,t.remark as "remark" from build_unit t
+		where 1=1
+		<#if (name?exists)>
+	   		and t.name like concat("%",:name,"%")
+    	</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,t.name as "name" ,t.short_name as "shortName" ,t.remark as "remark" from build_unit t where t.pk_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into build_unit (pk_id,name,short_name,remark) values (?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="shortName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update build_unit set 
+		name=?,
+		short_name=?,
+		remark=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="shortName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from build_unit  where pk_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

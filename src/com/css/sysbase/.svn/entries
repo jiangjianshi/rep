@@ -1,0 +1,43 @@
+10
+
+dir
+100
+http://vip.svnspot.com/liushengit.rep/trunk/rep/src/com/css/sysbase
+http://vip.svnspot.com/liushengit.rep
+
+
+
+2015-04-26T13:40:28.464748Z
+88
+doumengkai
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7a42831b-0bbd-e76e-61ee-88445a0fa1fa
+
+service
+dir
+
+cache
+dir
+
+dao
+dir
+
+entity
+dir
+
+web
+dir
+

@@ -1,0 +1,53 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/resources/js/IncJs.a?c=yes_no"></script>
+<script type="text/javascript" src="${basePath}/oa/feedback/editFeedBack.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<form id="submitForm">
+		<input type="hidden" name="pkId" value="${pkId}"/>
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+			<tr>
+				<td style="width: 120px;" align="right">操作:</td>
+				<td align="left">
+					<a href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-save" onclick="save()">保存</a> <a
+						href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-cancel"
+						onclick="javascript:Dialog.close();">取消</a>
+				</td>
+			</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">时间:</td>
+					<td>
+					<input id="tsTime" name="tsTime"  value="${tsTime}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"/>
+					</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">日期:</td>
+					<td><input id="tsDate" name="tsDate"  value="${tsDate}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;" onClick="WdatePicker()"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">大文�?</td>
+					<td>
+						<textarea id="tsArea" name="tsArea" rows="6" cols="30" 
+						 	class="easyui-validatebox class1">${tsArea}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">数字:</td>
+					<td>
+					<input id="tsDecimal" name="tsDecimal"  value="${tsDecimal}"
+							class="easyui-validatebox easyui-numberbox class1" data-options="required:true,min:0,precision:2" 
+							type="text" style="width: 150px;"/>
+					</td>
+				</tr>
+		</table>
+	</form>
+</body>
+</html>

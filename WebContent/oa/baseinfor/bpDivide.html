@@ -1,0 +1,150 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript">
+var proId  = "${proId}";
+var flowStatus = '${proInfor.flowStatus}';
+$(document).ready(function() {
+	//项目状态 ！=  “分工中”
+	if(flowStatus!='1003'){
+		$('a.easyui-linkbutton').linkbutton('disable');//禁用所有操作按钮
+	}
+}); // $(document).ready--end
+
+
+function checkbox_change(check_obj){
+	var divideButton1 = $(check_obj).parent().parent().find("#divideButton1")[0];
+	var divideButton2 = $(check_obj).parent().parent().find("#divideButton2")[0];
+	if($(check_obj).is(":checked")){
+		$(divideButton1).linkbutton('enable');
+		$(divideButton2).linkbutton('enable');
+	}else{
+		$(divideButton1).linkbutton('disable');
+		$(divideButton2).linkbutton('disable');
+	}
+}
+function divideUser(majorId,roleId,type){
+	var url = basePath+"/oa/baseinfor/bpDivideSelUser.c?roleId="+roleId+"&majorId="+majorId+"&type="+type;
+	openDialog(600,600,"选择人员",url);
+}
+
+function save(isSubmit) {
+	$.messager.progress({text:'系统处理中...'}); 
+	var checkedMajorId_arr = [];
+	var checkUserId_arr = [];
+	var proofreadUserId_arr = [];
+	var isAllowSubmit = true;
+	$("input[name='majorIds']:checked").each(function(i, o) {
+		checkedMajorId_arr.push($(o).val());
+		
+		var checkUserId_input = $(o).parent().parent().find("input[id^='checkUserId_']")[0];
+		if($(checkUserId_input).val()==''){
+			isSubmit = false;
+		}else{
+			checkUserId_arr.push($(checkUserId_input).val());
+		}
+		
+		var proofreadUserId_input = $(o).parent().parent().find("input[id^='proofreadUserId_']")[0];
+		if($(proofreadUserId_input).val()==''){
+			isSubmit = false;
+		}else{
+			proofreadUserId_arr.push($(proofreadUserId_input).val());
+		}
+		
+	});
+	if(!isAllowSubmit){
+		$.messager.progress('close');
+		alert("请查检所选择专业是否已全部分配审核人员");
+		return;
+	}
+	var url = basePath + '/oa/baseinfor/bpDivideSave.c';
+	$('#submitForm').form('submit', {
+		url : url,
+		onSubmit: function(param){    
+	        param.proId = proId;    
+	        param.checkedMajorId_str = checkedMajorId_arr;    
+	        param.checkUserId_str = checkUserId_arr;    
+	        param.proofreadUserId_str = proofreadUserId_arr;    
+	        param.isSubmit = isSubmit;    
+	    },
+		success : function(result) {
+			$.messager.progress('close');
+			var result = eval('(' + result + ')');
+			if (result.isSuccess) {
+				alert(result.msg);
+				//回调父页面查询方法，刷新datagrid
+				if(getParentWindow().initDivideGridByProId){
+					getParentWindow().initDivideGridByProId(proId);
+					getParentWindow().search();
+				}else{
+					getParentWindow().location.reload(true);
+				}
+				
+				Dialog.close();
+			} else {
+				alert(result.msg);
+			}
+		}
+	});
+}
+
+</script>
+</head>
+<body>
+	<form id="submitForm"> 
+   	<#if (dataList?exists)&&(dataList?size>0)> 
+   		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;" class="formTable">
+   				<thead>
+					<th style="width: 20px;" align="left"> </th>
+					<th class="label" align="left">专业</th>
+					<th class="label" align="left">审核人</th>
+					<th class="label" align="left">校审人</th>
+				</thead>
+			<#list dataList as obj>
+				<tr>
+					<td style="width: 20px;" align="left">
+						<#if obj.proId?? >
+						<input type="checkbox" name="majorIds" onchange="checkbox_change(this);" value="${obj.majorId}" 
+							checked="checked" />
+						<#else>
+						<input type="checkbox" name="majorIds" onchange="checkbox_change(this);" value="${obj.majorId}" />
+						</#if>
+					</td>
+					<td class="label" align="left">
+						<span class="majorNameSpan">${obj.majorName!''}</span>
+					</td>
+					<td class="label" align="left">
+						<input type="hidden" value="${obj.checkUser!''}" id="checkUserId_${obj.majorId}" />
+						<span style="color: #20A909;" id="checkUserShow_${obj.majorId}">${obj.checkUserName!'<font color=red>未分配</font>'}</span>
+						<#if obj.checkUserName?? >
+						<a id="divideButton1" href="javascript:divideUser('${obj.majorId}','${obj.relRole}','checkUser');" class="easyui-linkbutton">变更</a>
+						<#else>
+						<a id="divideButton1" href="javascript:divideUser('${obj.majorId}','${obj.relRole}','checkUser');" class="easyui-linkbutton"
+							data-options="disabled:true">分配</a>
+						</#if>
+					</td>
+					<td class="label" align="left">
+						<input type="hidden" value="${obj.proofreadUser!''}" id="proofreadUserId_${obj.majorId}" />
+						<span style="color: #20A909;" id="proofreadUserShow_${obj.majorId}">${obj.proofreadUserName!'<font color=red>未分配</font>'}</span>
+						<#if obj.checkUserName?? >
+						<a id="divideButton2" href="javascript:divideUser('${obj.majorId}','${obj.relRole}','proofreadUser');" class="easyui-linkbutton">变更</a>
+						<#else>
+						<a id="divideButton2" href="javascript:divideUser('${obj.majorId}','${obj.relRole}','proofreadUser');" class="easyui-linkbutton"
+							data-options="disabled:true">分配</a>
+						</#if>
+					</td>
+				</tr>
+			</#list>
+		<tr>
+			<td colspan="4">
+				<a href="javascript:void(0);" class="easyui-linkbutton"
+					iconCls="icon-ok" onclick="save('false')">临时保存</a> 
+					
+				<a href="javascript:void(0);" class="easyui-linkbutton"
+					iconCls="icon-ok" onclick="save('true');">提交分工</a> 
+			</td>
+		</tr>
+		</table>
+	</#if>
+	</form>
+</body>
+</html>

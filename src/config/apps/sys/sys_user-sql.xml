@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.user_id AS "userId",
+			t.username AS "username",
+			t.PASSWORD AS "password",
+			t.realname AS "realname",
+			dep.dep_name as "depName"
+		FROM
+			sys_user t
+		left JOIN sys_dept dep on dep.dep_id=t.dep_id
+		where 1=1
+		<#if searchType??>
+			<#if searchType=='temp_user'>
+				and t.pro_id is not null
+			<#elseif searchType=='sys_user'>
+				and t.pro_id is null
+			</#if>
+		</#if>
+		
+		<#if username??>
+			and t.username like concat("%",:username,"%")
+		</#if>
+		
+		<#if realname??>
+			and (
+				t.realname like concat("%",:realname,"%") 
+				or 
+				fn_fristPinyin(t.realname) like concat("%",:realname,"%")
+			)
+		</#if>
+		
+		<#if depId??>
+			and FIND_IN_SET(t.dep_id,fn_getChildDepts(:depId)) > 0
+		</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.user_id AS "userId",
+			t.username AS "username",
+			t. PASSWORD AS "password",
+			t.realname AS "realname",
+			t.receive_email as "receiveEmail"
+		from sys_user t where t.user_id=:id
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_user (user_id,username,password,realname) values (?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="userId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="username" type="java.lang.String"></sqlParm>
+		<sqlParm binding="password" type="java.lang.String"></sqlParm>
+		<sqlParm binding="realname" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_user set 
+		username=?,
+		password=?,
+		realname=?
+		where user_id=?
+		]]>
+		</sql>
+		<sqlParm binding="username" type="java.lang.String"></sqlParm>
+		<sqlParm binding="password" type="java.lang.String"></sqlParm>
+		<sqlParm binding="realname" type="java.lang.String"></sqlParm>
+		<sqlParm binding="userId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_user  where user_id=:delId
+		]]>
+		</sql>
+	</query>
+	<!-- 获得用户的角色-->
+	<query id="getRoleInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+	ur.user_id as "userId",
+	r.role_code AS "roleCode",
+	r.role_name AS "roleName"
+FROM
+	sys_role r
+left JOIN sys_user_role ur ON r.role_code = ur.role_code and ur.user_id = :userId
+		]]>
+		</sql>
+	</query>
+</query-infor>

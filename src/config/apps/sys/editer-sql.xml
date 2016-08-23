@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- getFile -->
+	<query id="searchImgList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.id AS "id",
+			t.NAME AS "name",
+			t.file_path AS "filePath",
+			t.c_time AS "cTime"
+		FROM
+			editer_img t ORDER BY t.c_time desc
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addImg" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into editer_img (
+			id,NAME,file_path,c_time
+		) values (
+			?,?,?,?
+		)
+		]]>
+		</sql>
+		<sqlParm binding="id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="filePath" type="java.lang.String"></sqlParm>
+		<sqlParm binding="cTime" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delImg" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete FROM editer_img  where id=?
+		]]>
+		</sql>
+		<sqlParm binding="id" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

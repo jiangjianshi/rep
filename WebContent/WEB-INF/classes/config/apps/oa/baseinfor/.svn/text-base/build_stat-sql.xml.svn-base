@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.stat_id AS "buildProStat_pkId",
+			t.rep_code AS "repCode",
+			t.stat_rep AS "statRep",
+			t.stat_entr AS "statEntr",
+			t.stat_exam AS "statExam",
+			t.stat_shdr AS "statShdr",
+			t.stat_elig AS "statElig",
+			t.stat_look AS "statLook",
+			t.stat_exam_amt AS "statExamAmt"
+		FROM
+			build_stat t
+		WHERE
+			t.rep_code =:buildProId
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO build_stat (
+			stat_id,
+			rep_code,
+			stat_rep,
+			stat_entr,
+			stat_exam,
+			stat_shdr,
+			stat_elig,
+			stat_look,
+			stat_exam_amt
+		)
+		VALUES
+			(?,?,?,?,?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="buildProStat_pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="repCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statRep" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statEntr" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statExam" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statShdr" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statElig" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statLook" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statExamAmt" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update build_stat set 
+		stat_rep=?,
+		stat_entr=?,
+		stat_exam=?,
+		stat_shdr=?,
+		stat_elig=?,
+		stat_look=?,
+		stat_exam_amt=?
+		where stat_id=?
+		]]>
+		</sql>
+		<sqlParm binding="statRep" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statEntr" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statExam" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statShdr" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statElig" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statLook" type="java.lang.String"></sqlParm>
+		<sqlParm binding="statExamAmt" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildProStat_pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from build_stat  where stat_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

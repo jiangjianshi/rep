@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 合同列表 -->
+	<query id="contractList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			p.pro_name,
+			p.pk_id as "proId",
+			t.*
+		FROM
+			fn_contract t
+		LEFT JOIN build_pro p ON p.pro_number = t.pro_number
+		<#if (proName?exists)>
+	   		and p.pro_name like concat("%",:proName,"%")
+    	</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- 工程受理 临时查询项目号 -->
+	<query id="getPorInfoForId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT *  from build_pro t where pk_id=:proId
+		]]>
+		</sql>
+	</query>
+	<!-- 工程受理   工程信息统计 -->
+	<query id="getPorStatForId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT *  from build_stat t where rep_code=:proId
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 工程受理   工程信息统计 -->
+	<query id="getContractForId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			p.pro_name,
+			t.*
+		FROM
+			fn_contract t
+		LEFT JOIN build_pro p ON p.pro_number = t.pro_number
+		where p.pk_id=:proId
+		]]>
+		</sql>
+	</query>
+	
+	
+	<!-- 工程受理 临时查询项目号 -->
+	<query id="addContract" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into fn_contract (fn_id,con_amt,pro_number,con_sta) values (?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="fn_id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="con_amt" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pro_number" type="java.lang.String"></sqlParm>
+		<sqlParm binding="con_sta" type="java.lang.String"></sqlParm>
+	</query>
+	
+	
+	
+	<!-- 更新 -->
+	<query id="updateTempUser" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_user set 
+		receive_email=?
+		where user_id=?
+		]]>
+		</sql>
+		<sqlParm binding="receiveEmail" type="java.lang.String"></sqlParm>
+		<sqlParm binding="userId" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

@@ -1,0 +1,68 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script>
+var proId = '${proId!""}';
+$(document).ready(function() {
+	$('#tt').tabs({    
+	    border:false,    
+	    onSelect:function(title){  
+	    	selectMajorTab();
+	    }    
+	});  
+	selectMajorTab();
+}); // $(document).ready--end
+
+function selectMajorTab(){
+	var pp = $('#tt').tabs('getSelected');    
+	var majorId = pp.panel('options').majorId;
+	$("#checkDetailSub")[0].src="${basePath}/oa/check/checkDetailSub.c?proId="+proId+"&majorId="+majorId;
+}
+
+</script>
+</head>
+<style>
+</style>
+<body>
+<table border="0" cellspacing="0" cellpadding="0"
+	class="formTable">
+	<tr>
+		<td class="label" style="width: 80px;" align="right">工程名称：</td>
+		<td style="" align="center">${proInfor.proName!''}</td>
+		<td class="label" style="width: 80px;" align="right">设计单位:</td>
+		<td style="" align="center">${proInfor.sjdw!''}</td>
+		<td class="label" style="width: 80px;" align="right">建设单位:</td>
+		<td style="" align="center">${proInfor.buildUnit!''}</td>
+	</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0" style="margin:5px 0 5px 0;"
+	class="formTable">
+	<tr>
+		<td class="label" align="right" colspan="2">政府审批意见附件:</td>
+		<#if govopinionInfor??>
+		<td>
+			${govopinionInfor.opin_file_name}
+			<a href="${basePath}/oa/govopinion/download.c?proId=${proId}">下载查看</a>
+		</td>
+		<td class="label" align="right">最近更新时间:</td>
+		<td colspan="2">
+			${govopinionInfor.update_time!'-'}
+		</td>
+		<#else>
+		<td>
+		未上传
+		</td>
+		</#if>
+	</tr>
+</table>
+<div id="tt" class="easyui-tabs" style="width:100%;">   
+<#if (majorInforList?exists)&&(majorInforList?size>0)>
+	<#list majorInforList as majorInfor>
+	<div title="${majorInfor.majorName!''}" style="padding-top:8px;" 
+		data-options="closable:false,majorId:'${majorInfor.majorId}'">  
+    </div>
+	</#list>
+</#if>
+</div>  
+<iframe id="checkDetailSub" border="0" width="100%" height="600" src="${basePath}/oa/check/checkDetailSub.c"></iframe>
+</body>
+</html>

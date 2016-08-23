@@ -1,0 +1,35 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/oa/govopinion/govopinionList.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>项目名称:</td>
+					<td><input name="proName" id="proName" style="width:100px;" />
+					<td width=30>&nbsp;</td>
+					<td>是否已上传审批意见:</td>
+					<td>
+						<select name="isHaveOpinion" id="isHaveOpinion" onchange="search();">
+							<option value="all" selected="selected">全部</option>
+							<option value="yes">已上传</option>
+							<option value="no">未上传</option>
+						</select>
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-redo'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</html>

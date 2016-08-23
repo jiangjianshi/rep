@@ -1,0 +1,8 @@
+<!--上传文件目录 --> 
+fileupload.path=E:/test1
+
+
+<!--政府审批意见附件-目录 --> 
+govopinion.path=/govopinion/
+<!--本应用部署地址 --> 
+web.address=http://localhost:8080/rep

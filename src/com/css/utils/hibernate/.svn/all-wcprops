@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/liushengit.rep/!svn/ver/115/trunk/rep/src/com/css/utils/hibernate
+END
+OrderEnum.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/utils/hibernate/OrderEnum.java
+END
+GeneralDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/liushengit.rep/!svn/ver/19/trunk/rep/src/com/css/utils/hibernate/GeneralDao.java
+END
+HQLUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/utils/hibernate/HQLUtils.java
+END
+BaseManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/115/trunk/rep/src/com/css/utils/hibernate/BaseManager.java
+END
+BaseModel.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/liushengit.rep/!svn/ver/108/trunk/rep/src/com/css/utils/hibernate/BaseModel.java
+END

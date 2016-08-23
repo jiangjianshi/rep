@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="listData" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT t.pk_id as "pk_id",
+			t.role_code AS "roleCode",
+			t.role_name AS "roleName"
+		FROM
+			sys_role t
+		where 1=1
+		<#if (roleName?exists)>
+	   		and t.role_name like concat("%",:roleName,"%")
+   	   </#if>
+		]]>
+		</sql>
+	</query>
+	<!-- 判断要添加的角色编码是否已经存在 -->
+	<query id="judgeRoleCodeExists" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT t.pk_id FROM sys_role t where t.role_code=:roleCode
+		]]>
+		</sql>
+	</query>
+	<!-- 根据用户查询角色列表 -->
+	<query id="getRoleListByUserId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT r.role_name as "roleName",r.role_code as "roleCode" FROM sys_role r
+		left join sys_user_role ur on ur.role_code=r.role_code where ur.user_id=:userId
+		]]>
+		</sql>
+	</query>
+	<!-- 添加用户 -->
+	<query id="add" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO sys_role (
+			pk_id,
+			role_name,
+			role_code
+		)
+		VALUES
+			(?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="pk_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="roleName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 更新 -->
+	<query id="update" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		UPDATE sys_role t
+		SET t.role_code = ?,
+		 t.role_name = ?
+		WHERE
+			t.pk_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pk_id" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="del" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_role where pk_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="pk_id" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

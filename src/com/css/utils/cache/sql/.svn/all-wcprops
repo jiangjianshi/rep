@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/liushengit.rep/!svn/ver/98/trunk/rep/src/com/css/utils/cache/sql
+END
+SqlParm.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/utils/cache/sql/SqlParm.java
+END
+SqlParmUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/98/trunk/rep/src/com/css/utils/cache/sql/SqlParmUtils.java
+END
+QuerySqlSupport.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/utils/cache/sql/QuerySqlSupport.java
+END
+SqlTemplateLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/utils/cache/sql/SqlTemplateLoader.java
+END
+SqlContextCache.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/utils/cache/sql/SqlContextCache.java
+END

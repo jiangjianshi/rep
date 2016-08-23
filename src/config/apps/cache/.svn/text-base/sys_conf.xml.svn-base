@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<query-infor>
+
+<query id="searchCtype" type="search">
+	<sql><![CDATA[Select *  from sys_ctype ]]></sql>
+</query>
+
+
+<query id="searchCode" type="search">
+	<sql><![CDATA[Select *  from sys_code ]]></sql>
+</query>
+
+</query-infor>

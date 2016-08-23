@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.NAME AS "name",
+			t.short_name AS "shortName",
+			c.code_name AS "qualifyGrade",
+			t.qualify_grade AS "qualifyGradeCode",
+			t.cert_no AS "certNo",
+			t.remark AS "remark"
+		FROM
+			sjdw_unit t
+		left join sys_code c on c.ctype_code='zzdj' and t.qualify_grade=c.code_value
+		where 1=1
+		<#if (name?exists)>
+	   		and t.name like concat("%",:name,"%")
+    	</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,t.name as "name" ,t.short_name as "shortName" ,t.qualify_grade as "qualifyGrade" ,t.cert_no as "certNo" ,t.remark as "remark" from sjdw_unit t where t.pk_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sjdw_unit (pk_id,name,short_name,qualify_grade,cert_no,remark) values (?,?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="shortName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="qualifyGrade" type="java.lang.String"></sqlParm>
+		<sqlParm binding="certNo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sjdw_unit set 
+		name=?,
+		short_name=?,
+		qualify_grade=?,
+		cert_no=?,
+		remark=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="shortName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="qualifyGrade" type="java.lang.String"></sqlParm>
+		<sqlParm binding="certNo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sjdw_unit  where pk_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

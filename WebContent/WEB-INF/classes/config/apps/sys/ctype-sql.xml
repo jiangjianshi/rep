@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="ctypeList" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from sys_ctype t
+			where 1 = 1
+		   <#if (ctype_name?exists)>
+		   		and t.ctype_name like concat("%",:ctype_name,"%")
+       	   </#if>
+       	    <#if (ctype_flag?exists)>
+		   		and t.ctype_flag like concat("%",:ctype_flag,"%")
+       	   </#if>
+		]]>
+		</sql>
+	</query>
+
+	<!-- 添加 -->
+	<query id="addCtype" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_ctype (ctype_id,ctype_name, ctype_code, code_len, ctype_text, ctype_flag) values (?,?, ?, ?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="ctype_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="ctype_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_code" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_len" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_text" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_flag" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- -->
+	<query id="updateCtype" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_ctype t
+			SET t.ctype_name =?,
+			 t.code_len = ?,
+			 t.ctype_text = ?
+		where
+			t.ctype_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="ctype_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_len" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_text" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_id" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delCtype" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_ctype where ctype_id in (:delIds)
+		]]>
+		</sql>
+		<sqlParm binding="delIds" type="java.lang.String[]"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delCodes_ByTypeCode" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_code where ctype_code=?
+		]]>
+		</sql>
+		<sqlParm binding="ctype_code" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!--筛选参数查询-->
+	<query id="ctypeQList" type="search">
+		<sql>
+		<![CDATA[ 
+			select * from sys_code where ctype_code = 'borr_query_codes' order by ctype_order
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 添加 -->
+	<query id="addQType" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_code (code_id, code_name, code_value, code_other,  ctype_code, ctype_name, ctype_order, is_single) values (?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="code_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="code_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_value" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_other" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_code" type="java.lang.String" defaultValue="borr_query_codes"></sqlParm>
+		<sqlParm binding="ctype_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_order" type="java.lang.String"></sqlParm>
+		<sqlParm binding="is_single" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 删除 -->
+	<query id="delQCtype" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_code where code_id in (:delIds) or ctype_code in (:ctypeCodes)
+		]]>
+		</sql>
+		<sqlParm binding="delIds" type="java.lang.String[]"></sqlParm>
+		<sqlParm binding="ctypeCodes" type="java.lang.String[]"></sqlParm>
+	</query>
+	
+	<!-- 更新 -->
+	<query id="updateQCtype" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_code t
+			SET t.code_name =?,
+			 t.code_value = ?,
+			 t.code_other = ?,
+			 t.ctype_name = ?,
+			 t.ctype_order = ?,
+			 t.is_single = ?
+		where
+			t.code_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="code_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_value" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_other" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_order" type="java.lang.String"></sqlParm>
+		<sqlParm binding="is_single" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_id" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

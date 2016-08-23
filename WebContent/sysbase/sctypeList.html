@@ -1,0 +1,128 @@
+<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/sysbase/sctypeList.js"></script> 
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+<div data-options="region:'west',border:true,split:true"
+		title="参数类型" style="width: 50%;">
+	<div id="toolbar" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="add();"
+					data-options="iconCls:'icon-add'">新增</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="del();"
+					data-options="iconCls:'icon-remove'">删除</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="edit();"
+					data-options="iconCls:'icon-edit'">编辑</a></td>
+			</tr>
+		</table>
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>参数类型名称:</td>
+					<td><input name="ctype_name" id="ctype_name" style="width: 60px;" />
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-tip'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<table id="dataGrid" data-options="fit:true,border:false"></table>
+
+	<div id="addDiv" class="easyui-dialog"
+		style="width: 500px; height: 350px; padding: 2px 2px" closed="true"
+		buttons="#dlg-buttons" modal="true">
+		<form id="addForm">
+			<input type="hidden" name="ctype_id" value="">
+			<input type="hidden" name="ctype_flag" value="H">
+			<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+				<tr>
+					<td style="width: 100px;" align="right">参数类型名称:</td>
+					<td><input type="text" name="ctype_name"   class="easyui-validatebox" size="20" required="true" value="" /></td>
+				</tr>
+				<tr>
+					<td align="right">参数类型编码:</td>
+					<td><input type="text" name="ctype_code"  class="easyui-validatebox" required="true" size="20" value="" /></td>
+				</tr>
+				<tr>
+					<td align="right">参数长度限制:</td>
+					<td><input type="text" name="code_len"  class="easyui-numberspinner" min="1" max="20" required="true" value="" /></td>
+				</tr>
+				<tr>
+					<td align="right">参数类型描述:</td>
+					<td><textarea name="ctype_text" id="ctype_text" class="easyui-validatebox"  rows="2"  style="width: 160px;font-size: 12px;"></textarea></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-save" onclick="save()">保存</a> <a
+			href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-cancel"
+			onclick="javascript:$('#addDiv').dialog('close')">取消</a>
+	</div>
+</div>
+
+<!-- 参数编码 ------------ -->
+<div data-options="region:'center',border:true,split:true"
+		title="参数编码">
+		<div id="toolbarCode" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="addCode();"
+					data-options="iconCls:'icon-add'">新增</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="delCode();"
+					data-options="iconCls:'icon-remove'">删除</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="editCode();"
+					data-options="iconCls:'icon-edit'">编辑</a></td>
+			</tr>
+		</table>
+	</div>
+	<table id="dataCodeGrid" data-options="fit:true,border:false"></table>
+
+	<div id="addCodeDiv" class="easyui-dialog"
+		style="width: 500px; height: 350px; padding: 2px 2px" closed="true"
+		buttons="#dlgCode-buttons" modal="true">
+		<form id="addCodeForm">
+			<input type="hidden" name="code_id" value="">
+			<input type="hidden" name="ctype_code" value="">
+			<input type="hidden" name="ctype_name" value="">
+			<input type="hidden" name="code_cc" value="Q">
+			<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+				<tr>
+					<td style="width: 100px;" align="right">参数名称:</td>
+					<td><input  class="easyui-validatebox" required="true" type="text" style="width: 160px;" maxlength="20" name="code_name" value="" /></td>
+				</tr>
+				<tr>
+					<td align="right">参数编码值:</td>
+					<td><input  class="easyui-validatebox" required="true" type="text" maxlength="20" name="code_value" value="" /></td>
+				</tr>
+				<tr>
+					<td align="right">参数类型描述:</td>
+					<td><textarea name="code_text" id="code_text" class="easyui-validatebox"  rows="2"  style="width: 160px;font-size: 12px;"></textarea></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dlgCode-buttons">
+		<a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-ok" onclick="saveCode()">保存</a> <a
+			href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-cancel"
+			onclick="javascript:$('#addCodeDiv').dialog('close')">取消</a>
+	</div>
+</div>
+</body>
+</html>

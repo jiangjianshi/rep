@@ -1,0 +1,113 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<link href="${basePath}/oa/images/combox.css" rel="stylesheet" type="text/css" />
+<script>
+$(document).ready(function() {
+	
+}); // $(document).ready--end
+</script>
+</head>
+<style>
+</style>
+<body>
+<#if ws.isHaveRightByUserId(curLoginUserId,"638143eb-9d17-4985-b9f7-6cd14ae45b74")>
+<script type="text/javascript">
+//分工
+function divide(proId) {
+	var url = basePath+"/oa/baseinfor/bpDivide.c?proId="+proId;
+	openDialog(800,800,"分工",url);
+}
+</script>
+<div class="combox">
+	<h2>待分工</h2>				
+	<div class="content">
+		<#assign todoDivideList = ws.getDataList("todoList-sql", "todoDivideList","curLoginUserId="+curLoginUserId) />
+		<table border="0" cellspacing="0" cellpadding="0" class="formTable" width="100%">
+			<#list todoDivideList as infor>
+				<tr>
+					<td><a href="javascript:divide('${infor.pk_id!''}');">${infor.pro_name!''}</a></td>
+				</tr>
+			</#list>
+		</table>
+	</div>
+</div>
+</#if>
+
+<#if ws.isHaveRightByUserId(curLoginUserId,"247b5e06-14f0-429c-9648-db489ef5daed")>
+<script type="text/javascript">
+//审查-窗口
+function check(proId) {
+	var url = basePath+"/oa/check/checkDetail.c?proId="+proId;
+	openDialog(1100,1000,"审查",url);
+}
+</script>
+<div class="combox">
+	<h2>待一审</h2>				
+	<div class="content">
+		<#assign todoCheckList = ws.getDataList("todoList-sql", "todoCheckList","curLoginUserId="+curLoginUserId) />
+		<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+			<#list todoCheckList as infor>
+				<tr>
+					<td><a href="javascript:check('${infor.pk_id!''}');">${infor.pro_name!''}</a></td>
+				</tr>
+			</#list>
+		</table>
+	</div>
+</div>
+</#if>
+
+<#if ws.isHaveRightByUserId(curLoginUserId,"e61399cc-47ae-4dd8-8ef2-455e1256b6de")>
+<script type="text/javascript">
+//审查-窗口
+function proofread(proId) {
+	var url = basePath+"/oa/check/proofreadDetail.c?proId="+proId;
+	openDialog(1200,1000,"审查",url);
+}
+</script>
+<div class="combox">
+	<h2>待复审</h2>				
+	<div class="content">
+		<#assign todoProfreadList = ws.getDataList("todoList-sql", "todoProfreadList","curLoginUserId="+curLoginUserId) />
+		<#if (todoProfreadList?exists)&&(todoProfreadList?size>0)>
+		<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+			<tr>
+				<td class="label" style="width: 300px;">项目名称</td>
+				<td class="label">审查状态</td>
+			</tr>
+			<#list todoProfreadList as infor>
+				<tr>
+					<td><a href="javascript:proofread('${infor.pk_id!''}');">${infor.pro_name!''}</a></td>
+					<td>${infor.flowStatus!''}</a></td>
+				</tr>
+			</#list>
+		</table>
+		</#if>
+	</div>
+</div>
+</#if>
+
+<#if ws.isHaveRightByUserId(curLoginUserId,"cb06d4b2-f2ad-4a42-aa15-78063233076f")
+	&& sessionUser.pro_id??	>
+<script type="text/javascript">
+//意见回复详细 -窗口
+function feedback(proId) {
+	var url = basePath+"/oa/feedback/feedBackDeatil.c?proId="+proId;
+	openDialog(1000,1000,"审查意见回复",url);
+}
+</script>
+<div class="combox">
+	<h2>待反馈</h2>				
+	<div class="content">
+		<#assign todoDfkList = ws.getDataList("todoList-sql", "todoDfkList","curLoginUserId="+curLoginUserId) />
+		<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+			<#list todoDfkList as infor>
+				<tr>
+					<td><a href="javascript:feedback('${infor.pk_id!''}');">${infor.pro_name!''}</a></td>
+				</tr>
+			</#list>
+		</table>
+	</div>
+</div>
+</#if>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/oa/check/archiviList.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>工程名称:</td>
+					<td><input name="proName" id="proName" style="width:100px;" />
+					<td>审查状态:</td>
+					<td>
+						<select name="flowStatus" id="flowStatus" onchange="search();">
+							<option value="all" selected="selected">全部</option>
+							<option value="yes">已归档</option>
+							<option value="no">未归档</option>
+						</select>
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-redo'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</html>

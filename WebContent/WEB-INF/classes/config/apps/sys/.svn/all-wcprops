@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/liushengit.rep/!svn/ver/116/trunk/rep/src/config/apps/sys
+END
+ctype-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/liushengit.rep/!svn/ver/4/trunk/rep/src/config/apps/sys/ctype-sql.xml
+END
+fn_con_sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/liushengit.rep/!svn/ver/105/trunk/rep/src/config/apps/sys/fn_con_sql.xml
+END
+sys_treecode-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/liushengit.rep/!svn/ver/62/trunk/rep/src/config/apps/sys/sys_treecode-sql.xml
+END
+urso-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/liushengit.rep/!svn/ver/4/trunk/rep/src/config/apps/sys/urso-sql.xml
+END
+business_user-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/liushengit.rep/!svn/ver/114/trunk/rep/src/config/apps/sys/business_user-sql.xml
+END
+code-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/liushengit.rep/!svn/ver/62/trunk/rep/src/config/apps/sys/code-sql.xml
+END
+sys_dept-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/liushengit.rep/!svn/ver/115/trunk/rep/src/config/apps/sys/sys_dept-sql.xml
+END
+editer-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/liushengit.rep/!svn/ver/4/trunk/rep/src/config/apps/sys/editer-sql.xml
+END
+sys_user-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/liushengit.rep/!svn/ver/116/trunk/rep/src/config/apps/sys/sys_user-sql.xml
+END
+right-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/liushengit.rep/!svn/ver/111/trunk/rep/src/config/apps/sys/right-sql.xml
+END
+sys_tree_type-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/liushengit.rep/!svn/ver/61/trunk/rep/src/config/apps/sys/sys_tree_type-sql.xml
+END
+user-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/liushengit.rep/!svn/ver/4/trunk/rep/src/config/apps/sys/user-sql.xml
+END
+sys_role-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/liushengit.rep/!svn/ver/103/trunk/rep/src/config/apps/sys/sys_role-sql.xml
+END
+role-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/liushengit.rep/!svn/ver/4/trunk/rep/src/config/apps/sys/role-sql.xml
+END

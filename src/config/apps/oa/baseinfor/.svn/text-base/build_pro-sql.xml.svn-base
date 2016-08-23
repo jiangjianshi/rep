@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.pro_name AS "proName",
+			t.build_unit AS "buildUnit",
+			t.kcdw AS "kcdw",	
+			t.sjdw AS "sjdw",
+			t.total_area AS "totalArea",
+			t.total_amount AS "totalAmount",
+			t.accept_user AS "acceptUser",
+			t.receive_time AS "receiveTime",
+			t.accept_time AS "acceptTime",	
+			c.code_name as "flowStatus"
+		FROM
+			build_pro t
+		left JOIN sys_code c on c.ctype_code='project_flow_status' and c.code_value=t.flow_status
+		where 1=1
+		<#if (proName?exists)>
+			and (
+					t.pro_name like concat("%",:proName,"%") 
+					or 
+					fn_fristPinyin(t.pro_name) like concat("%",:proName,"%")
+				)
+    	</#if>
+		<#if (flowStatus?exists)>
+	   		and t.flow_status = :flowStatus
+    	</#if>
+		order by t.create_time desc
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+			SELECT
+	t.pk_id AS "pkId",
+	t.pro_name AS "proName",
+	t.pro_number as "proNumber",
+	t.pro_address AS "proAddress",
+	t.examine_type AS "examineType",
+	t.major_pro AS "majorPro",
+	t.build_unit AS "buildUnit",
+	t.build_link_person AS "buildLinkPerson",
+	t.build_link_phone AS "buildLinkPhone",
+	t.org_code AS "orgCode",
+	t.project_leader AS "projectLeader",
+	t.project_leader_phone AS "projectLeaderPhone",
+	t.kcdw AS "kcdw",
+	t.kcdw_grad AS "kcdwGrad",
+	t.kcdw_certno AS "kcdwCertno",
+	t.kcdw_link_person AS "kcdwLinkPerson",
+	t.kcdw_link_phone AS "kcdwLinkPhone",
+	t.sjdw AS "sjdw",
+	t.sjdw_grad AS "sjdwGrad",
+	t.sjdw_certno AS "sjdwCertno",
+	t.sjdw_link_person AS "sjdwLinkPerson",
+	t.sjdw_link_phone AS "sjdwLinkPhone",
+	t.pro_type AS "proType",
+	t.pro_grad AS "proGrad",
+	t.pro_property AS "proProperty",
+	t.pro_scale AS "proScale",
+	t.scjg AS "scjg",
+	t.scjg_grad AS "scjgGrad",
+	t.scjg_certno AS "scjgCertno",
+	t.scjg_phone AS "scjgPhone",
+	t.scjg_fax AS "scjgFax",
+	t.total_area AS "totalArea",
+	t.total_amount AS "totalAmount",
+	t.remark AS "remark",
+	t.accept_user AS "acceptUser",
+	t.receive_time AS "receiveTime",
+	t.accept_time AS "acceptTime",
+	t.flow_status as "flowStatus"
+FROM
+	build_pro t
+WHERE
+	t.pk_id =:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO build_pro (
+	pk_id,
+	pro_name,
+	pro_number,
+	pro_address,
+	examine_type,
+	major_pro,
+	build_unit,
+	build_link_person,
+	build_link_phone,
+	org_code,
+	project_leader,
+	project_leader_phone,
+	kcdw,
+	kcdw_grad,
+	kcdw_certno,
+	kcdw_link_person,
+	kcdw_link_phone,
+	sjdw,
+	sjdw_grad,
+	sjdw_certno,
+	sjdw_link_person,
+	sjdw_link_phone,
+	pro_type,
+	pro_grad,
+	pro_property,
+	pro_scale,
+	scjg,
+	scjg_grad,
+	scjg_certno,
+	scjg_phone,
+	scjg_fax,
+	total_area,
+	total_amount,
+	remark,
+	accept_user,
+	receive_time,
+	accept_time,
+	flow_status,
+	create_user,
+	create_time
+)
+VALUES
+	(
+		?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+	)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proNumber" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proAddress" type="java.lang.String"></sqlParm>
+		<sqlParm binding="examineType" type="java.lang.String"></sqlParm>
+		<sqlParm binding="majorPro" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildUnit" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildLinkPerson" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildLinkPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="orgCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="projectLeader" type="java.lang.String"></sqlParm>
+		<sqlParm binding="projectLeaderPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdw" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwCertno" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwLinkPerson" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwLinkPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdw" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwCertno" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwLinkPerson" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwLinkPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proType" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proProperty" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proScale" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjg" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgCertno" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgFax" type="java.lang.String"></sqlParm>
+		<sqlParm binding="totalArea" type="java.lang.String"></sqlParm>
+		<sqlParm binding="totalAmount" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+		<sqlParm binding="acceptUser" type="java.lang.String"></sqlParm>
+		<sqlParm binding="receiveTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="acceptTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="flowStatus" type="java.lang.String"></sqlParm>
+		<sqlParm binding="createUser" type="java.lang.String"></sqlParm>
+		<sqlParm binding="createTime" type="java.util.Date"></sqlParm>
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update build_pro set 
+		pro_name=?,
+		pro_number=?,
+		pro_address=?,
+		examine_type=?,
+		major_pro=?,
+		build_unit=?,
+		build_link_person=?,
+		build_link_phone=?,
+		org_code=?,
+		project_leader=?,
+		project_leader_phone=?,
+		kcdw=?,
+		kcdw_grad=?,
+		kcdw_certno=?,
+		kcdw_link_person=?,
+		kcdw_link_phone=?,
+		sjdw=?,
+		sjdw_grad=?,
+		sjdw_certno=?,
+		sjdw_link_person=?,
+		sjdw_link_phone=?,
+		pro_type=?,
+		pro_grad=?,
+		pro_property=?,
+		pro_scale=?,
+		scjg=?,
+		scjg_grad=?,
+		scjg_certno=?,
+		scjg_phone=?,
+		scjg_fax=?,
+		total_area=?,
+		total_amount=?,
+		remark=?,
+		accept_user=?,
+		receive_time=?,
+		accept_time=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="proName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proNumber" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proAddress" type="java.lang.String"></sqlParm>
+		<sqlParm binding="examineType" type="java.lang.String"></sqlParm>
+		<sqlParm binding="majorPro" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildUnit" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildLinkPerson" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildLinkPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="orgCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="projectLeader" type="java.lang.String"></sqlParm>
+		<sqlParm binding="projectLeaderPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdw" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwCertno" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwLinkPerson" type="java.lang.String"></sqlParm>
+		<sqlParm binding="kcdwLinkPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdw" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwCertno" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwLinkPerson" type="java.lang.String"></sqlParm>
+		<sqlParm binding="sjdwLinkPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proType" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proProperty" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proScale" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjg" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgGrad" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgCertno" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgPhone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="scjgFax" type="java.lang.String"></sqlParm>
+		<sqlParm binding="totalArea" type="java.lang.String"></sqlParm>
+		<sqlParm binding="totalAmount" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+		<sqlParm binding="acceptUser" type="java.lang.String"></sqlParm>
+		<sqlParm binding="receiveTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="acceptTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from build_pro  where pk_id=:delId
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 更新项目流程状态 -->
+	<query id="updateProFlowStatus" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update build_pro set 
+		flow_status=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="flowStatus" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+</query-infor>

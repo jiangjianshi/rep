@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/liushengit.rep/!svn/ver/117/trunk/rep/src/config/apps/oa/check
+END
+project_check-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/101/trunk/rep/src/config/apps/oa/check/project_check-sql.xml
+END
+project_proofread-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/98/trunk/rep/src/config/apps/oa/check/project_proofread-sql.xml
+END
+major-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/liushengit.rep/!svn/ver/103/trunk/rep/src/config/apps/oa/check/major-sql.xml
+END
+project_archived_sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/106/trunk/rep/src/config/apps/oa/check/project_archived_sql.xml
+END
+apply_opinion-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/101/trunk/rep/src/config/apps/oa/check/apply_opinion-sql.xml
+END
+todoList-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/liushengit.rep/!svn/ver/117/trunk/rep/src/config/apps/oa/check/todoList-sql.xml
+END

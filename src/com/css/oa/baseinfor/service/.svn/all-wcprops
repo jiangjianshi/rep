@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/liushengit.rep/!svn/ver/117/trunk/rep/src/com/css/oa/baseinfor/service
+END
+ApplyMajorService.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/ApplyMajorService.java
+END
+BuildUnitService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/BuildUnitService.java
+END
+ScdwUnitService.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/ScdwUnitService.java
+END
+BuildProMinService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/BuildProMinService.java
+END
+BuildProjectService.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/liushengit.rep/!svn/ver/101/trunk/rep/src/com/css/oa/baseinfor/service/BuildProjectService.java
+END
+ProjectFileService.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/ProjectFileService.java
+END
+SjdwUnitService.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/SjdwUnitService.java
+END
+KcdwUnitService.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/KcdwUnitService.java
+END
+BusinessService.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/liushengit.rep/!svn/ver/102/trunk/rep/src/com/css/oa/baseinfor/service/BusinessService.java
+END
+BuildProStatService.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/liushengit.rep/!svn/ver/74/trunk/rep/src/com/css/oa/baseinfor/service/BuildProStatService.java
+END

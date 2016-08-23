@@ -1,0 +1,30 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/sysbase/setUserRole.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+<form id="sumbitForm">
+	<input type="hidden" name="userId" value="${userId}" />
+	<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+		<#list roleList as infor>
+		<tr>
+			<td style="width: 30px;">
+			<#if infor.userId?exists>
+			<input name="roleCode" type="checkbox" checked="checked" value="${infor.roleCode!''}"/>
+			<#else>
+			<input name="roleCode" type="checkbox" value="${infor.roleCode!''}"/>
+			</#if>
+			</td>
+			<td>${infor.roleName!''}</td>
+		</tr>
+		</#list>
+		<tr>
+			<td colspan="2" ><a id="btn" href="#"
+				class="easyui-linkbutton" onClick="save();"
+				data-options="iconCls:'icon-save'">保存</a></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<link rel="stylesheet" href="${basePath}/resources/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="${basePath}/resources/zTree/js/jquery.ztree.core-3.2.js"></script>
+<script type="text/javascript" src="${basePath}/sysbase/editUser.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<form id="submitForm">
+		<input type="hidden" name="userId" value="${objInfor.userId}"/>
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+				<tr>
+					<td style="width: 80px;" align="right">用户名:</td>
+					<td><input type="text" name="username" value="${objInfor.userName}" style="width: 100px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">密码:</td>
+					<td><input type="text" name="password" value="${objInfor.password}" style="width: 100px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">真实姓名:</td>
+					<td><input type="text" name="realname" value="${objInfor.realName}" style="width: 100px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td align="right">所在部门:</td>
+					<td>
+					<input type="hidden" name="depId" id="depId" value="${objInfor.depId!''}"/>
+					<input type="text" name="depName" id="depName" value="${depName!''}" onclick="showMenu(); return false;"
+						style="width: 185px;" class="easyui-validatebox" data-options="required:true" />
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 120px;" align="right">操作:</td>
+					<td align="left">
+						<a href="javascript:void(0);" class="easyui-linkbutton"
+							iconCls="icon-save" onclick="save()">保存</a> <a
+							href="javascript:void(0);" class="easyui-linkbutton"
+							iconCls="icon-cancel"
+							onclick="javascript:Dialog.close();">取消</a>
+					</td>
+				</tr>
+		</table>
+	</form>
+	<div id="menuContent" class="menuContent"
+		style="display: none; position: absolute;
+			background: none repeat scroll 0 0 #f0f6e4;
+		    border: 1px solid #617775;
+		    overflow-x: auto;
+		    overflow-y: scroll;
+		">
+		<ul id="depTree" class="ztree" style="margin-top: 0; width: 160px;"></ul>
+	</div>
+</body>
+</html>

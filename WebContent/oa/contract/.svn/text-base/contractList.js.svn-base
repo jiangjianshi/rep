@@ -1,0 +1,126 @@
+var grid;
+// 数据加载参数
+var dataGridParams = {
+	queryParams : {
+		pageSize : 20,// 配置每页显示条数，如果不配置，默认为10
+	},
+	pageList : [ 20, 20, 30, 50, 100 ],
+	columns : [ [ 
+		{
+			field : 'fn_id',
+			title : '主键',
+			hidden:true
+		}, 
+		{
+			field : 'proId',
+			title : 'proId',
+			hidden:true
+		}, 
+		{
+			field : 'pro_name',
+			title : '工程名称',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'pro_number',
+			title : '项目号',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'cont_no',
+			title : '合同号',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'con_amt',
+			title : '合同额',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'con_price',
+			title : '合同单价',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'con_st',
+			title : '合同开始时间',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'con_en',
+			title : '合同结束时间',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'con_real_amt',
+			title : '合同实收款',
+			align : 'left',
+			sortable : true,
+			width : 150
+		},
+		{
+			field : 'con_sta',
+			title : '合同状态',
+			align : 'left',
+			sortable : true,
+			width : 150
+		}
+] ]
+};
+$(document).ready(function() {
+	grid = $("#dataGrid").datagrid({
+		title : '',
+		url : basePath + '/commonCtrl/loadByPage.c?t=fn_con_sql&s=contractList',
+		queryParams : dataGridParams.queryParams,
+		rownumbers : true,
+		height : 'auto',
+		width : 'auto',
+		striped : true,
+		loadMsg : '正在加载数据，请稍后！',
+		pagination : true,
+		border : true,
+		singleSelect : true,
+		pageSize : dataGridParams.pageSize,
+		pageList : dataGridParams.pageList,
+		columns : dataGridParams.columns,
+		toolbar : '#toolbar',
+		onDblClickRow: function(rowIndex, rowData){
+		}
+	});
+}); // $(document).ready--end
+
+//信息查询
+function search() {
+	grid.datagrid('reload', serializeObject($('#searchForm')));
+}
+//重置查询条件
+function resetSearch() {
+	$('#searchForm input').val('');
+	grid.datagrid('reload', dataGridParams.queryParams);
+}
+
+//合同详情 -窗口
+function viewContract() {
+	var selectRows = grid.datagrid("getChecked");
+	if (selectRows.length == 0) {
+		alert("请选择一条记录！");
+		return;
+	}
+	var selectRow = selectRows[0];
+	var url = basePath+"/oa/contract/viewContract.c?proId="+selectRow.proId;
+	openDialog(1000,1000,"合同详情",url);
+}

@@ -1,0 +1,217 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script>
+var proId = "${proId}";
+var majorId = "${majorId}"
+function addNewBtn(){
+	$.messager.progress({text:'系统处理中...'}); 
+	var url = basePath + "/oa/check/checkDetailSubSave.c";
+	$('#submitForm').form('submit', {
+		url : url,
+		onSubmit: function(param){    
+	        param.applyStatus = 'lscp';  
+	        param.proId = proId;    
+	        param.majorId = majorId;    
+	    },
+		success : function(data) {
+			var result = eval('(' + data + ')');
+			if (result.isSuccess) {
+				var url = basePath + "/oa/check/addOpinion.c?proId="+proId+"&majorId="+majorId+"&round="+1;
+				$.get(url,function(data) {
+					var result = eval('(' + data + ')');
+					if (result.isSuccess) {
+						window.location.reload(true);
+					} else {
+						alert(result.msg);
+					}
+				});
+			} else {
+				alert(result.msg);
+			}
+		}
+	});
+}
+function delOpinion(opinId){
+	$.messager.progress({text:'系统处理中...'}); 
+	var url = basePath + "/oa/check/checkDetailSubSave.c";
+	$('#submitForm').form('submit', {
+		url : url,
+		onSubmit: function(param){    
+	        param.applyStatus = 'lscp';    
+	        param.proId = proId;    
+	        param.majorId = majorId;    
+	    },
+		success : function(data) {
+			var result = eval('(' + data + ')');
+			if (result.isSuccess) {
+				var url = basePath + "/commonCtrl/saveOrUpate.c?t=apply_opinion-sql&s=delObj&delId="+opinId;
+				$.get(url,function(data) {
+					var result = eval('(' + data + ')');
+					if (result.isSuccess) {
+						window.location.reload(true);
+					} else {
+						alert(result.msg);
+					}
+				});
+			} else {
+				alert(result.msg);
+			}
+		}
+	});
+	
+}
+function checkDetailSubSave(applyStatus){
+	$.messager.progress({text:'系统处理中...'}); 
+	var url = basePath + "/oa/check/checkDetailSubSave.c";
+	$('#submitForm').form('submit', {
+		url : url,
+		onSubmit: function(param){    
+	        param.applyStatus = applyStatus;    
+	        param.proId = proId;    
+	        param.majorId = majorId;    
+	    },
+		success : function(data) {
+			var result = eval('(' + data + ')');
+			if (result.isSuccess) {
+				alert(result.msg);
+				window.location.reload(true);
+			} else {
+				alert(result.msg);
+			}
+		}
+	});
+}
+$(document).ready(function() {
+	
+}); // $(document).ready--end
+</script>
+</head>
+<style>
+</style>
+<body>
+<div class="msgbox1">
+	<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+		<tr>
+			<td class="label" style="width: 80px;" align="right"><b>审查专业:</b></td>
+			<td align="center">
+				${curMajorInfor.majorName!''}  &nbsp;&nbsp;&nbsp;&nbsp;<font color=red>${curMajorInfor.checkResult!''}</font>
+			</td>
+			<td class="label" style="width: 80px;" align="right"><b>审查人员:</b></td>
+			<td align="center">
+				${curMajorInfor.checkUser!''} 
+			</td>
+			<td class="label" style="width: 80px;" align="right"><b>复审人员:</b></td>
+			<td align="center">
+				${curMajorInfor.proofreadUser!''}
+			</td>
+		</tr>
+	</table>  
+</div>
+<form id="submitForm">
+	<table border="0" cellspacing="0" cellpadding="0" id="opinionList"
+		class="formTable">
+			<tr>
+				<td class="label" style="width: 120px;" align="center">单体</td>
+				<td class="label" style="width: 80px;" align="center">图号</td>
+				<td class="label" style="width: 120px;" align="center">审查意见</td>
+				<td class="label" style="width: 80px;" align="center">规范编号</td>
+				<td class="label" style="width: 40px;" align="center">操作</td>
+			</tr>
+			<#if (opinionList?exists)&&(opinionList?size>0)>
+				<#list opinionList as opinionInfor>
+					<#if (curMajorInfor.check_result == 'csz')>
+						<tr>
+							<td align="center">
+							<input id="opinId" name="opinId" type="hidden" value="${opinionInfor.opinId}"/>
+							<select  name="minoId">
+							
+								<#list minoList as minoInfor>
+									<#if (opinionInfor.minoId?exists)&&(minoInfor.minoId == opinionInfor.minoId)>
+										<option value="${minoInfor.minoId}" selected="selected">${minoInfor.minoName}</option>
+									<#else>
+										<option value="${minoInfor.minoId}">${minoInfor.minoName}</option>
+									</#if>
+								</#list>
+							</select>
+							<td><input id="opinCode" name="opinCode" placeholder="请输入图号"
+									class="easyui-validatebox class1" data-options="required:true" 
+									type="text" style="width:80px;" value="${opinionInfor.opinCode!''}"/></td>
+							<td>
+								<textarea name="opinOption" id="opinOption" 
+								 placeholder="请输入审查意见"
+								rows="3" cols="32" class="easyui-validatebox">${opinionInfor.opinOption!''}</textarea>	
+							</td>
+							<td><input id="opinSpecNum" name="opinSpecNum" placeholder="请输入"
+									class="easyui-validatebox class1" data-options="required:true" 
+									type="text" style="width: 80px;"  value="${opinionInfor.opinSpecNum!''}"/></td>
+							<td>
+								<a href="javascript:delOpinion('${opinionInfor.opinId}');" >删除</a>
+							</td>
+						</tr>
+					<#else>
+						<tr>
+							<td align="center">
+								<input disabled="disabled" value="${opinionInfor.minoName!''}"/>
+							</td>
+							<td>
+								<input disabled="disabled" value="${opinionInfor.opinCode!''}"/>
+							</td>
+							<td>
+								<textarea disabled="disabled" rows="3" cols="32">${opinionInfor.opinOption!''}</textarea>	
+							</td>
+							<td>
+								<input disabled="disabled" value="${opinionInfor.opinSpecNum!''}"/>
+							</td>
+							<td>
+								--
+							</td>
+						</tr>
+					</#if>
+				</#list>
+			<#else>
+				<tr>
+					<td align="center" colspan="4">
+						${curMajorInfor.checkResult!''}
+					</td>
+				</tr>
+			</#if>
+			
+			<#if (curMajorInfor.check_result == 'csz') && (curLoginUserId=curMajorInfor.checkUserId)>
+				<tr>
+					<td style="width: 120px;" align="right">操作:</td>
+					<td align="left" colspan="4">
+						<a id="addNewBtn" href="javascript:void(0);" class="easyui-linkbutton"
+							iconCls="icon-cancel"
+							onclick="addNewBtn();">新增</a>
+					</td>
+				</tr>
+			</#if>
+	</table>
+</form>
+
+<#if (curMajorInfor.check_result == 'csz') && (curLoginUserId=curMajorInfor.checkUserId)>
+	<div class="msgbox1">
+		<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+			<tr>
+				<td class="label" style="width: 80px;" align="right"><b>审查操作:</b></td>
+				<td style="" align="center">
+					<a title="临时存盘" id="lscp_btn" href="javascript:void(0);" class="easyui-linkbutton quicktip"
+							iconCls="icon-ok"  data-options="disabled:false"
+							onclick="checkDetailSubSave('lscp');">临时存盘</a> 
+				</td>
+				<td style="" align="center">
+					<a title="审查合格" id="hg_btn" href="javascript:void(0);" class="easyui-linkbutton"
+							iconCls="icon-ok"  data-options="disabled:false"
+							onclick="checkDetailSubSave('hg');">审查合格</a> 
+				</td>
+				<td style="" align="center">
+					<a title="所审专业将进入复审阶段" id="dfk_btn" href="javascript:void(0);" class="easyui-linkbutton quicktip"
+							iconCls="icon-ok"  data-options="disabled:false"
+							onclick="checkDetailSubSave('dfk');">审查提交</a> 
+				</td>
+			</tr>
+		</table>  
+	</div>
+</#if>
+</body>
+</html>

@@ -1,0 +1,2 @@
+日期格式化
+date_format(t.c_time,'%Y-%m-%d %H:%i') AS "cTime"

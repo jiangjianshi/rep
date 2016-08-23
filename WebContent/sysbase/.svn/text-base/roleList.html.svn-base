@@ -1,0 +1,34 @@
+<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/sysbase/roleList.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="add();"
+					data-options="iconCls:'icon-add'">新增</a></td>
+			</tr>
+		</table>
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>查询:</td>
+					<td><input name="title" id="title" style="width:100px;" />
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-redo'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</html>

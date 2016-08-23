@@ -1,0 +1,299 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib
+END
+spring-beans-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-beans-4.1.2.RELEASE.jar
+END
+aopalliance.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/aopalliance.jar
+END
+spring-jms-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-jms-4.1.2.RELEASE.jar
+END
+mysql-connector-java-5.1.18-bin.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/mysql-connector-java-5.1.18-bin.jar
+END
+spring-tx-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-tx-4.1.2.RELEASE.jar
+END
+jstl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/jstl.jar
+END
+spring-context-support-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-context-support-4.1.2.RELEASE.jar
+END
+javassist-3.15.0-GA.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/javassist-3.15.0-GA.jar
+END
+dom4j-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/dom4j-1.6.1.jar
+END
+cxf-2.1.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/cxf-2.1.3.jar
+END
+spring-aspects-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-aspects-4.1.2.RELEASE.jar
+END
+hibernate-core-4.1.6.Final.jar
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/hibernate-core-4.1.6.Final.jar
+END
+ojdbc14.jar
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/ojdbc14.jar
+END
+jboss-logging-3.1.0.GA.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/jboss-logging-3.1.0.GA.jar
+END
+spring-instrument-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-instrument-4.1.2.RELEASE.jar
+END
+spring-webmvc-portlet-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-webmvc-portlet-4.1.2.RELEASE.jar
+END
+standard-1.1.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/standard-1.1.2.jar
+END
+com.springsource.org.apache.commons.fileupload-1.2.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/com.springsource.org.apache.commons.fileupload-1.2.0.jar
+END
+commons-beanutils-1.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/commons-beanutils-1.6.jar
+END
+log4j-1.2.16.jar
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/log4j-1.2.16.jar
+END
+aspectjweaver.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/aspectjweaver.jar
+END
+spring-websocket-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-websocket-4.1.2.RELEASE.jar
+END
+freemarker-2.3.15.jar
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/freemarker-2.3.15.jar
+END
+spring-core-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-core-4.1.2.RELEASE.jar
+END
+spring-instrument-tomcat-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-instrument-tomcat-4.1.2.RELEASE.jar
+END
+spring-orm-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-orm-4.1.2.RELEASE.jar
+END
+dom4j-full.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/dom4j-full.jar
+END
+spring-expression-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-expression-4.1.2.RELEASE.jar
+END
+ezmorph-1.0.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/ezmorph-1.0.2.jar
+END
+spring-jdbc-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-jdbc-4.1.2.RELEASE.jar
+END
+mail.jar
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/mail.jar
+END
+spring-oxm-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-oxm-4.1.2.RELEASE.jar
+END
+com.springsource.org.apache.commons.io-1.4.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/com.springsource.org.apache.commons.io-1.4.0.jar
+END
+jboss-transaction-api_1.1_spec-1.0.0.Final.jar
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/jboss-transaction-api_1.1_spec-1.0.0.Final.jar
+END
+commons-collections-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/commons-collections-3.1.jar
+END
+json-lib-2.4-jdk13.jar
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/json-lib-2.4-jdk13.jar
+END
+antlr-2.7.7.jar
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/antlr-2.7.7.jar
+END
+hibernate-commons-annotations-4.0.1.Final.jar
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/hibernate-commons-annotations-4.0.1.Final.jar
+END
+spring-messaging-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-messaging-4.1.2.RELEASE.jar
+END
+spring-web-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-web-4.1.2.RELEASE.jar
+END
+commons-lang-2.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/commons-lang-2.6.jar
+END
+spring-aop-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-aop-4.1.2.RELEASE.jar
+END
+spring-test-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-test-4.1.2.RELEASE.jar
+END
+commons-logging.jar
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/commons-logging.jar
+END
+hibernate-jpa-2.0-api-1.0.1.Final.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar
+END
+c3p0-0.9.1.2-jdk1.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/c3p0-0.9.1.2-jdk1.3.jar
+END
+activation.jar
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/activation.jar
+END
+spring-webmvc-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-webmvc-4.1.2.RELEASE.jar
+END
+spring-context-4.1.2.RELEASE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/liushengit.rep/!svn/ver/9/trunk/rep/WebContent/WEB-INF/lib/spring-context-4.1.2.RELEASE.jar
+END

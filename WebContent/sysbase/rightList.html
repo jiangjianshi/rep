@@ -1,0 +1,59 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/sysbase/rightList.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="addTop();"
+					data-options="iconCls:'icon-add'">新增</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="edit();"
+					data-options="iconCls:'icon-remove'">编辑</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="del();"
+					data-options="iconCls:'icon-remove'">删除</a></td>
+			</tr>
+		</table>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+
+	<div id="addDiv" class="easyui-dialog"
+		style="width: 400px; height: 230px; padding: 2px 2px" closed="true"
+		buttons="#dlg-buttons" modal="true">
+		<form id="addForm">
+			<input type="hidden" name="pkId" value="">
+			<input type="hidden" name="pCode" value="">
+			<input type="hidden" name="saveType" value="">
+			<table border="0" cellspacing="0" cellpadding="0" style="width: 90%;" class="formTable">
+				<tr>
+					<td style="width: 80px;" align="right">资源名称:</td>
+					<td><input type="text" name="rightName" style="width:90%;" class="easyui-validatebox"
+						data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td align="right">资源路径:</td>
+					<td><input type="text" name="rightUrl" style="width:90%;" class="easyui-validatebox"
+						data-options="required:true" value="" /></td>
+				</tr>
+				<tr>
+					<td align="right">排序:</td>
+					<td><input type="text" name="orderCode" style="width:100px;" class="easyui-validatebox"
+						data-options="required:true" value="" /></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-save" onclick="save()">保存</a> <a
+			href="javascript:void(0);" class="easyui-linkbutton"
+			iconCls="icon-cancel"
+			onclick="javascript:$('#addDiv').dialog('close')">取消</a>
+	</div>
+</body>
+</html>

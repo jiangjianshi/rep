@@ -1,0 +1,42 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/resources/js/IncJs.a?c=yes_no"></script>
+<script type="text/javascript" src="${basePath}/sysbase/editSysTreeType.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<form id="submitForm">
+		<input type="hidden" name="tId" value="${tId}"/>
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+			<tr>
+				<td style="width: 120px;" align="right">操作:</td>
+				<td align="left">
+					<a href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-save" onclick="save()">保存</a> <a
+						href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-cancel"
+						onclick="javascript:Dialog.close();">取消</a>
+				</td>
+			</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">名称:</td>
+					<td><input id="tName" name="tName"  value="${tName}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">排序:</td>
+					<td><input id="tOrder" name="tOrder"  value="${tOrder}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">编码:</td>
+					<td><input id="tCode" name="tCode"  value="${tCode}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+		</table>
+	</form>
+</body>
+</html>

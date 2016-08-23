@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<!-- checkStatus、secondCheckStatus为一审待反馈和二审待反馈状态值 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.pro_name AS "proName",
+			t.build_unit AS "buildUnit",
+			t.kcdw AS "kcdw",	
+			t.sjdw AS "sjdw",
+			t.total_area AS "totalArea",
+			t.total_amount AS "totalAmount",
+			t.accept_user AS "acceptUser",
+			t.receive_time AS "receiveTime",
+			t.accept_time AS "acceptTime",	
+			c.code_name as "flowStatus"
+		FROM
+			build_pro t
+		left JOIN sys_code c on c.ctype_code='project_flow_status' and c.code_value=t.flow_status
+		left JOIN sys_user u on u.pro_id=t.pk_id
+		where 1=1 
+		<#if (curLoginUserId?exists)>
+	   		and u.user_id=:curLoginUserId
+    	</#if>
+		<#if (proName?exists)>
+	   		and t.pro_name like concat("%",:proName,"%")
+    	</#if>
+		order by t.create_time desc
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,
+t.ts_time as "tsTime" ,
+t.ts_date as "tsDate" ,
+t.ts_area as "tsArea" ,
+t.ts_decimal as "tsDecimal" 
+from ts_model t where t.pk_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into ts_model (pk_id,
+ts_time,
+ts_date,
+ts_area,
+ts_decimal,) values (?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsDate" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsArea" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsDecimal" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update ts_model set 
+		ts_time=?,
+		ts_date=?,
+		ts_area=?,
+		ts_decimal=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="tsTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsDate" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsArea" type="java.lang.String"></sqlParm>
+		<sqlParm binding="tsDecimal" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from ts_model  where pk_id=:delId
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 查询需要反馈的页签信息 -->
+	<query id="getMajorNameForTabs" type="search">
+		<sql>
+		<![CDATA[
+		SELECT
+			am.major_name AS "majorName",
+			am.apply_major_id AS "majorId",
+			c.code_name AS "checkResult"
+		FROM
+			apply_major am
+		LEFT JOIN apply_major_pro ap ON am.apply_major_id = ap.major_id
+		LEFT JOIN build_pro bp ON ap.pro_id = bp.pk_id
+		LEFT JOIN sys_code c ON c.code_value = ap.check_result and c.ctype_code = 'major_check_status'
+		WHERE ap.pro_id =:proId
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 设计院回复，每个专业中的意见列表 -->
+	<query id="searchOptionList" type="search">
+	<sql>
+	<![CDATA[
+	SELECT
+	t.opin_id AS "opinId",
+	t.pro_id AS "proId",
+	t.major_id AS "majorId",
+	t.mino_ID AS "minoId",
+	m.mino_name AS "minoName",
+	t.opin_code AS "opinCode",
+	t.opin_option AS "opinOption",
+	t.opin_spec_num AS "opinSpecNum",
+	c.code_name AS "opinOverType",
+	t.opin_deal AS "opinDeal",
+	c2.c_name AS "fireOption",
+	c3.c_name AS "fireOptionSub",
+	c1.code_name AS "opinImp",
+	t.opin_feedback AS "opinFeedback",
+	t.opin_flag AS "opinFlag",
+	t.opin_ps AS "opinPs",
+	t.opin_time AS "opinTime"
+FROM
+	apply_opinion t
+LEFT JOIN build_pro_min m ON m.pk_id = t.mino_ID
+LEFT JOIN sys_code c ON c.ctype_code = 'wglx'
+AND c.code_value = t.opin_over_type
+LEFT JOIN sys_code c1 ON c1.ctype_code = 'zycd'
+AND c1.code_value = t.opin_imp
+LEFT JOIN sys_tree_code c2 ON c2.t_id = 'type001'
+AND c2.c_id = t.fire_option
+LEFT JOIN sys_tree_code c3 ON c3.t_id = 'type001'
+AND c3.c_id = t.fire_option_sub
+LEFT JOIN build_pro bp ON bp.pk_id = t.pro_id
+WHERE
+	t.pro_id = :proId
+AND t.major_id =:majorId
+AND t.opin_flag = (select bp.flow_status from build_pro bp where bp.pk_id=:proId)
+	]]>
+	</sql>
+	</query>
+	
+	<!-- 回复意见(更新审核意见表-处理意见) -->
+	<query id="updateApplyOp" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update apply_opinion set 
+		opin_deal=?
+		where opin_id=?
+		]]>
+		</sql>
+		<sqlParm binding="feedbackOption" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinId" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pro_file_id AS "proFileId",
+			t.file_name AS "fileName"
+		FROM
+			project_file t where t.pro_type=:proType
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pro_file_id as "proFileId" ,t.file_name as "fileName" ,t.apply_state as "applyState" ,t.pro_type as "proType" from project_file t where t.pro_file_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into project_file (pro_file_id,file_name,pro_type) values (?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="proFileId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="fileName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proType" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update project_file set 
+		file_name=?
+		where pro_file_id=?
+		]]>
+		</sql>
+		<sqlParm binding="fileName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proFileId" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from project_file  where pro_file_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

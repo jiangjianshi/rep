@@ -1,0 +1,49 @@
+<#include "/sysbase/common/include.html"/>
+<title></title>
+<link rel="stylesheet"
+	href="${basePath}/resources/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script type="text/javascript"
+	src="${basePath}/resources/zTree/js/jquery.ztree.core-3.2.js"></script>
+<script type="text/javascript"
+	src="${basePath}/resources/zTree/js/jquery.ztree.excheck-3.2.js"></script>
+<script type="text/javascript" src="${basePath}/sysbase/role_right.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div data-options="region:'west',border:true,split:true" title="角色"
+		style="width: 400px;">
+		<div id="toolbar" style="display: none;">
+			<form id="searchForm">
+				<table border="0">
+					<tr>
+						<td>角色名称:</td>
+						<td><input name="roleName" id="roleName" style="width: 60px;" />
+						</td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:search();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-search'">查询</a></td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:resetSearch();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-tip'">重置</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+	<!-- 权限 -->
+	<div data-options="region:'center',border:true,split:true" title="权限">
+		<form id="saveForm">
+			<table border="0">
+				<tr>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:saveRoleRight();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-tip'">保存</a> 
+					<input type="hidden"
+						name="roleCode" id="roleCode" /></td>
+				</tr>
+			</table>
+		</form>
+		<ul id="rightTree" class="ztree"></ul>
+	</div>
+</body>
+</html>

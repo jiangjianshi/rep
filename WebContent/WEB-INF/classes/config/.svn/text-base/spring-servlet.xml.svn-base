@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-4.1.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+	<!-- 开启controller注解支持 -->
+	<context:component-scan base-package="com.css"
+		use-default-filters="false">
+		<!-- 扫描符合@Controller 的类 -->
+		<!-- 注：如果不进行@Controller过滤，扫描com.css下的所有类， 则事务不起作用 -->
+		<context:include-filter type="regex"
+			expression="com.css..*.web.*Ctrl" />
+	</context:component-scan>
+	<!-- 开启注解 -->
+	<mvc:annotation-driven />
+
+	<!-- 静态资源访问 -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Freemarker配置 start -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	<!--视图解释器 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="requestContextAttribute" value="rc" />
+		<property name="exposeRequestAttributes" value="false" />
+		<property name="exposeSessionAttributes" value="false" />
+		<property name="exposeSpringMacroHelpers" value="false" />
+	</bean>
+	<!-- Freemarker配置 end -->
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="10485760000" />
+		<property name="maxInMemorySize" value="40960" />
+	</bean>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.css.utils.interceptor.CheckLoginInterceptor">
+				<property name="obviateUrl" value="/sysbase/login.c,/sysbase/checkLogin.c" />
+				<property name="backUrl" value="/sysbase/login.c" />
+			</bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.css.utils.interceptor.RequestTimeConsumingInterceptor" />
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.css.utils.interceptor.PermissionPrivilegeInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>  

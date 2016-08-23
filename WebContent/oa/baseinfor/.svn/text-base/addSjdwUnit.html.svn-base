@@ -1,0 +1,49 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/resources/js/IncJs.a?c=zzdj"></script>
+<script type="text/javascript" src="${basePath}/oa/baseinfor/addSjdwUnit.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<form id="submitForm">
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+			<tr>
+				<td style="width: 120px;" align="right">操作:</td>
+				<td align="left">
+					<a href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-save" onclick="save()">保存</a> <a
+						href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-cancel"
+						onclick="javascript:Dialog.close();">取消</a>
+				</td>
+			</tr>
+				<tr>
+					<td style="width: 80px;" align="right">名称:</td>
+					<td><input type="text" name="name" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">简写:</td>
+					<td><input type="text" name="shortName" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">资质等级:</td>
+					<td>
+					<input type="text" id="qualifyGrade" name="qualifyGrade" style="width: 150px;"/>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">证书编号:</td>
+					<td><input type="text" name="certNo" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">备注:</td>
+					<td><input type="text" name="remark" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+		</table>
+	</form>
+</body>
+</html>

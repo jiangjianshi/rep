@@ -1,0 +1,65 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/resources/js/IncJs.a?c=zzdj"></script>
+<script type="text/javascript" src="${basePath}/oa/contract/editContract.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<form id="submitForm">
+		<input type="hidden" name="pkId" value="${pkId}"/>
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+			<tr>
+				<td style="width: 120px;" align="right">操作:</td>
+				<td align="left">
+					<a href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-ok" onclick="save()">保存</a> <a
+						href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-cancel"
+						onclick="javascript:Dialog.close();">取消</a>
+				</td>
+			</tr>
+				<tr>
+					<td style="width: 80px;" align="right">合同号:</td>
+					<td><input type="text" name="contNo" value="${contNo}" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">合同金额:</td>
+					<td><input type="text" name="contAmt" value="${contAmt}" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">单价:</td>
+					<td>
+					<input type="text" id="qualifyGrade" name="price"  value="${price!''}" style="width: 150px;"/>	
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">项目号:</td>
+					<td><input type="text" name="proId" value="${proId}" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">合同开始时间:</td>
+					<td><input type="text" name="contSdate" value="${contSdate}" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">合同结束时间:</td>
+					<td><input type="text" name="contEdate" value="${contEdate}" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">合同实收款:</td>
+					<td><input type="text" name="contRealAmt" value="${contRealAmt}" style="width: 150px;"
+						class="easyui-v alidatebox class1" data-options="required:true" /></td>
+				</tr>
+				<tr>
+					<td style="width: 80px;" align="right">合同状态:</td>
+					<td><input type="text" name="contSta" value="${contSta}" style="width: 150px;"
+						class="easyui-validatebox class1" data-options="required:true" /></td>
+				</tr>
+		</table>
+	</form>
+</body>
+</html>

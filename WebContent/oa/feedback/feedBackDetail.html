@@ -1,0 +1,48 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script>
+var proId = '${proId!""}';
+$(document).ready(function() {
+	$('#tt').tabs({    
+	    border:false,    
+	    onSelect:function(title){  
+	    	selectMajorTab();
+	    }    
+	});  
+	selectMajorTab();
+}); // $(document).ready--end
+
+function selectMajorTab(){
+	var pp = $('#tt').tabs('getSelected');    
+	var majorId = pp.panel('options').majorId;
+	$("#checkDetailSub")[0].src="${basePath}/oa/feedback/feedBackDetailSub.c?proId="+proId+"&majorId="+majorId;
+}
+
+</script>
+</head>
+<style>
+</style>
+<body>
+<table border="0" cellspacing="0" cellpadding="0"
+	class="formTable">
+	<tr>
+		<td class="label" style="width: 80px;" align="right">工程名称：</td>
+		<td style="" align="center">${proInfor.proName!''}</td>
+		<td class="label" style="width: 80px;" align="right">设计单位:</td>
+		<td style="" align="center">${proInfor.sjdw!''}</td>
+		<td class="label" style="width: 80px;" align="right">建设单位:</td>
+		<td style="" align="center">${proInfor.buildUnit!''}</td>
+	</tr>
+</table>
+<div id="tt" class="easyui-tabs" style="width:100%;">   
+<#if (majorInforList?exists)&&(majorInforList?size>0)>
+	<#list majorInforList as majorInfor>
+	<div title="${majorInfor.majorName!''}" style="padding-top:8px;" 
+		data-options="closable:false,majorId:'${majorInfor.majorId}'">  
+    </div>
+	</#list>
+</#if>
+</div>  
+<iframe id="checkDetailSub" border="0" width="100%" height="600" src=""></iframe>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${basePath}/resources/js/IncJs.a?c=yes_no&c=zzdj&c=sczzdj&c=zdxm&c=xmlx&c=pro_grade&c=pro_property&c=pro_scale&c=apply_type"></script>
+<script type="text/javascript" src="${basePath}/oa/baseinfor/updateBuildProject.js"></script>
+<script>
+var proId = '${pkId}';
+</script>
+</head>
+<style>
+tr.separationLine td{
+	background-color: #CEE0F7;height: 2px;line-height: 2px;
+}
+</style>
+<body>
+	<form id="submitForm">
+		<input type="hidden" name="pkId" value="${pkId}"/>
+		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+			class="formTable">
+			<tr>
+				<td style="width: 120px;" align="right">操作:</td>
+				<td align="left" colspan="5">
+					<a href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-save" onclick="save()">保存</a> <a
+						href="javascript:void(0);" class="easyui-linkbutton"
+						iconCls="icon-cancel"
+						onclick="javascript:Dialog.close();">取消</a>
+				</td>
+			</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">项目编号:</td>
+					<td><input id="proNumber" name="proNumber" value="${proNumber!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">工程名称:</td>
+					<td><input id="proName" name="proName"  value="${proName!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">工程地点:</td>
+					<td><input id="proAddress" name="proAddress"  value="${proAddress!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">项目类型:</td>
+					<td><input id="proType" name="proType"  value="${proType!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+				
+					<td class="label" style="width: 80px;" align="right">工程等级:</td>
+					<td><input id="proGrad" name="proGrad"  value="${proGrad!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+				
+					<td class="label" style="width: 80px;" align="right">工程性质:</td>
+					<td><input id="proProperty" name="proProperty"  value="${proProperty!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">工程规模:</td>
+					<td><input id="proScale" name="proScale"  value="${proScale!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">审查类别:</td>
+					<td><input id="examineType" name="examineType"  value="${examineType!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">重点项目:</td>
+					<td><input id="majorPro" name="majorPro"  value="${majorPro!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+							
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">合计面积:</td>
+					<td>
+					<input id="totalArea" name="totalArea"  value="${totalArea!''}"
+							class="easyui-validatebox easyui-numberbox class1" data-options="required:true,min:0,precision:2" 
+							type="text" style="width: 150px;"/>
+					</td>
+					<td class="label" style="width: 80px;" align="right">总投资额:</td>
+					<td colspan="3">
+					<input id="totalAmount" name="totalAmount"  value="${totalAmount!''}"
+							class="easyui-validatebox easyui-numberbox class1" data-options="required:true,min:0,precision:2" 
+							type="text" style="width: 150px;"/>
+					</td>
+				</tr>
+				<tr class="separationLine">
+					<td colspan="6">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right"><b>建设单位:</b></td>
+					<td><input id="buildUnit" name="buildUnit"  value="${buildUnit!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 200px;"/>
+						<a href="javascript:selectBuildunit();" class="easyui-linkbutton">选择</a>
+					</td>
+					<td class="label" style="width: 80px;" align="right">联系人:</td>
+					<td><input id="buildLinkPerson" name="buildLinkPerson"  value="${buildLinkPerson!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				
+					<td class="label" style="width: 80px;" align="right">联系电话:</td>
+					<td><input id="buildLinkPhone" name="buildLinkPhone"  value="${buildLinkPhone!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">机构代码:</td>
+					<td><input id="orgCode" name="orgCode"  value="${orgCode!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">项目负责人:</td>
+					<td><input id="projectLeader" name="projectLeader"  value="${projectLeader!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">联系电话:</td>
+					<td colspan="3"><input id="projectLeaderPhone" name="projectLeaderPhone"  value="${projectLeaderPhone!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr class="separationLine">
+					<td colspan="6">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right"><b>勘察单位:</b></td>
+					<td><input id="kcdw" name="kcdw"  value="${kcdw!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 200px;"/>
+						<a href="javascript:selectKcdwunit();" class="easyui-linkbutton">选择</a>		
+					</td>
+					<td class="label" style="width: 80px;" align="right">资质等级:</td>
+					<td><input id="kcdwGrad" name="kcdwGrad"  value="${kcdwGrad!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">证书编号:</td>
+					<td><input id="kcdwCertno" name="kcdwCertno"  value="${kcdwCertno!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">联系人:</td>
+					<td><input id="kcdwLinkPerson" name="kcdwLinkPerson"  value="${kcdwLinkPerson!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">联系电话:</td>
+					<td colspan="3"><input id="kcdwLinkPhone" name="kcdwLinkPhone"  value="${kcdwLinkPhone!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr class="separationLine">
+					<td colspan="6">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right"><b>设计单位:</b></td>
+					<td><input id="sjdw" name="sjdw"  value="${sjdw!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 200px;"/>
+						<a href="javascript:selectSjdwunit();" class="easyui-linkbutton">选择</a>		
+					</td>
+					<td class="label" style="width: 80px;" align="right">资质等级:</td>
+					<td><input id="sjdwGrad" name="sjdwGrad"  value="${sjdwGrad!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">证书编号:</td>
+					<td><input id="sjdwCertno" name="sjdwCertno"  value="${sjdwCertno!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">联系人:</td>
+					<td><input id="sjdwLinkPerson" name="sjdwLinkPerson"  value="${sjdwLinkPerson!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">联系电话:</td>
+					<td colspan="3"><input id="sjdwLinkPhone" name="sjdwLinkPhone"  value="${sjdwLinkPhone!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr class="separationLine">
+					<td colspan="6">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right"><b>审查机构:</b></td>
+					<td><input id="scjg" name="scjg"  value="${scjg!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 200px;"/>
+						<a href="javascript:selectScdwunit();" class="easyui-linkbutton">选择</a>		
+					</td>
+					<td class="label" style="width: 80px;" align="right">资质等级:</td>
+					<td><input id="scjgGrad" name="scjgGrad"  value="${scjgGrad!''}"
+							class="easyui-validatebox class1" data-options="" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">证书编号:</td>
+					<td><input id="scjgCertno" name="scjgCertno"  value="${scjgCertno!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">电话:</td>
+					<td><input id="scjgPhone" name="scjgPhone"  value="${scjgPhone!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+					<td class="label" style="width: 80px;" align="right">传真:</td>
+					<td colspan="3"><input id="scjgFax" name="scjgFax"  value="${scjgFax!''}"
+							class="easyui-validatebox class1" data-options="required:true" 
+							type="text" style="width: 150px;"/></td>
+				</tr>
+				<tr class="separationLine">
+					<td colspan="6">&nbsp;</td>
+				</tr>
+				<tr>
+					<td class="label" style="width: 80px;" align="right">备注:</td>
+					<td colspan="5">
+					<textarea name="remark" rows="1" cols="100" class="easyui-validatebox class1">${remark!''}</textarea>
+					</td>
+				</tr>
+		</table>
+	</form>
+</div>  
+</body>
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="ursoList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT t.*,a.username,a.realname 
+		FROM
+			sys_user_role t
+			left join sys_user a on a.user_id = t.user_id 
+		where t.role_code = :roleCode
+		]]>
+		</sql>
+	</query>
+	<!-- 添加用户 -->
+	<query id="addUrso" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO sys_user_role (
+			pk_id,
+			role_code,
+			user_id
+		)
+		VALUES
+			(?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="pk_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="role_code" type="java.lang.String"></sqlParm>
+		<sqlParm binding="user_id" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 更新 -->
+	<query id="updateUrso" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		UPDATE sys_user_role t SET t.user_id = ? WHERE t.pk_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="user_id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pk_id" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delUrso" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_user_role where pk_id in (:delIds)
+		]]>
+		</sql>
+		<sqlParm binding="delIds" type="java.lang.String[]"></sqlParm>
+	</query>
+	
+	<!-- 删除角色时关联删除 -->
+	<query id="delRole" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_user_role where role_code = ?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 删除用户时关联删除 -->
+	<query id="delUser" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_user_role where user_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="user_id" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

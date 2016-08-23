@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 用户列表 -->
+	<query id="codeList" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from sys_code t
+		where 1 = 1
+		   <#if (ctype_code?exists)>
+		   		and t.ctype_code = :ctype_code 
+       	   </#if>
+       	order by ctype_order
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 筛选列表 -->
+	<query id="codeQList" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from sys_code t
+		where 1 = 1
+		   <#if (code_value?exists)>
+		   		and t.ctype_code = :code_value 
+       	   </#if>
+       	order by ctype_order
+		]]>
+		</sql>
+	</query>	
+	<!-- comboboxData -->
+	<query id="comboboxData" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.code_name as "code_name",
+			t.code_value as "code_value"
+		FROM
+			sys_code t
+		where t.ctype_code=:tc
+		order by code_value asc
+		]]>
+		</sql>
+	</query>	
+	
+	<!-- 添加 -->
+	<query id="addCode" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_code (code_id, code_name, code_value, code_text, ctype_code, ctype_name, code_min_val, code_max_val, code_order, code_cc) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="code_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="code_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_value" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_text" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_code" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_min_val" type="java.lang.Double" defaultValue="0"></sqlParm>
+		<sqlParm binding="code_max_val" type="java.lang.Double" defaultValue="0"></sqlParm>
+		<sqlParm binding="code_order" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_cc" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 添加 -->
+	<query id="addQCode" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_code (code_id, code_name, code_value, code_other,  ctype_code, ctype_name, ctype_order, is_single) values (?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="code_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="code_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_value" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_other" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_code" type="java.lang.String" defaultValue="borr_query_codes"></sqlParm>
+		<sqlParm binding="ctype_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="ctype_order" type="java.lang.String"></sqlParm>
+		<sqlParm binding="is_single" type="java.lang.String"></sqlParm>
+	</query>
+		
+	<!--  -->
+	<query id="updateCode" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_code t
+			SET t.code_name =?,
+			 t.code_value = ?,
+			 t.code_text = ?,
+			 t.code_min_val = ?,
+			 t.code_max_val = ?,
+			 t.code_order = ?
+		where
+			t.code_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="code_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_value" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_text" type="java.lang.String"></sqlParm>
+		<sqlParm binding="code_min_val" type="java.lang.Double" defaultValue="0"></sqlParm>
+		<sqlParm binding="code_max_val" type="java.lang.Double" defaultValue="0"></sqlParm>
+		<sqlParm binding="code_order" type="java.lang.String" defaultValue="0"></sqlParm>
+		<sqlParm binding="code_id" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除 -->
+	<query id="delCode" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_code where code_id in (:delIds)
+		]]>
+		</sql>
+		<sqlParm binding="delIds" type="java.lang.String[]"></sqlParm>
+	</query>
+</query-infor>

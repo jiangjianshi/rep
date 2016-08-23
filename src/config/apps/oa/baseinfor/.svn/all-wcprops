@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/liushengit.rep/!svn/ver/117/trunk/rep/src/config/apps/oa/baseinfor
+END
+project_file-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/liushengit.rep/!svn/ver/72/trunk/rep/src/config/apps/oa/baseinfor/project_file-sql.xml
+END
+sjdw_unit-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/106/trunk/rep/src/config/apps/oa/baseinfor/sjdw_unit-sql.xml
+END
+kcdw_unit-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/106/trunk/rep/src/config/apps/oa/baseinfor/kcdw_unit-sql.xml
+END
+major_devide-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/liushengit.rep/!svn/ver/103/trunk/rep/src/config/apps/oa/baseinfor/major_devide-sql.xml
+END
+build_stat-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/72/trunk/rep/src/config/apps/oa/baseinfor/build_stat-sql.xml
+END
+build_unit-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/liushengit.rep/!svn/ver/106/trunk/rep/src/config/apps/oa/baseinfor/build_unit-sql.xml
+END
+apply_major_sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/liushengit.rep/!svn/ver/72/trunk/rep/src/config/apps/oa/baseinfor/apply_major_sql.xml
+END
+build_pro-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/117/trunk/rep/src/config/apps/oa/baseinfor/build_pro-sql.xml
+END
+scdw_unit-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/106/trunk/rep/src/config/apps/oa/baseinfor/scdw_unit-sql.xml
+END
+approval_infor-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/72/trunk/rep/src/config/apps/oa/baseinfor/approval_infor-sql.xml
+END
+build_pro_min-sql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/106/trunk/rep/src/config/apps/oa/baseinfor/build_pro_min-sql.xml
+END

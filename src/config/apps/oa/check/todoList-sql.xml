@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+
+	<!-- 待分工 -->
+	<query id="todoDivideList" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from build_pro p where p.flow_status in ('1003')
+		]]>
+		</sql>
+	</query>
+	<!-- 待复审 -->
+	<query id="todoProfreadList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			p.*, c.code_name AS "flowStatus"
+		FROM
+			build_pro p
+		LEFT JOIN sys_code c ON c.ctype_code = 'project_flow_status'
+		AND c.code_value = p.flow_status
+		WHERE
+			p.pk_id IN (
+				SELECT DISTINCT
+					amp.pro_id
+				FROM
+					apply_major_pro amp
+				WHERE
+					amp.proofread_user =:curLoginUserId
+			)
+		AND p.flow_status IN ('1008', '1006')
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 待一审 -->
+	<query id="todoCheckList" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from build_pro p where p.pk_id in 
+		(
+		SELECT
+			DISTINCT amp.pro_id
+		FROM
+			apply_major_pro amp
+		WHERE 1=1
+		 and amp.check_result = 'csz'
+			and amp.check_user=:curLoginUserId
+		)
+		and  p.flow_status in ('1004')
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 待反馈 -->
+	<query id="todoDfkList" type="search">
+		<sql>
+		<![CDATA[ 
+		select p.* from build_pro p,sys_user u
+		where p.pk_id in 
+		(
+		SELECT
+			DISTINCT amp.pro_id
+		FROM
+			apply_major_pro amp
+		WHERE 1=1
+		 and amp.check_result = 'dfk'
+		)
+		and u.pro_id=p.pk_id
+		and u.user_id=:curLoginUserId
+		]]>
+		</sql>
+	</query>
+	
+</query-infor>

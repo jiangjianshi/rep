@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t. NAME AS "name",
+			t.short_name AS "shortName",
+			c.code_name  AS "qualifyGrade",
+			t.qualify_grade  AS "qualifyGradeCode",
+			t.cert_no AS "certNo",
+			t.phone AS "phone",
+			t.fax AS "fax",
+			t.remark AS "remark"
+		FROM
+			scdw_unit t
+		left join sys_code c on c.ctype_code='sczzdj' and t.qualify_grade=c.code_value
+		where 1=1
+		<#if (name?exists)>
+	   		and t.name like concat("%",:name,"%")
+    	</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,t.name as "name" ,t.short_name as "shortName" ,t.qualify_grade as "qualifyGrade" ,t.cert_no as "certNo" ,t.phone as "phone" ,t.fax as "fax" ,t.remark as "remark" from scdw_unit t where t.pk_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into scdw_unit (pk_id,name,short_name,qualify_grade,cert_no,phone,fax,remark) values (?,?,?,?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="shortName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="qualifyGrade" type="java.lang.String"></sqlParm>
+		<sqlParm binding="certNo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="phone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="fax" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update scdw_unit set 
+		name=?,
+		short_name=?,
+		qualify_grade=?,
+		cert_no=?,
+		phone=?,
+		fax=?,
+		remark=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="shortName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="qualifyGrade" type="java.lang.String"></sqlParm>
+		<sqlParm binding="certNo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="phone" type="java.lang.String"></sqlParm>
+		<sqlParm binding="fax" type="java.lang.String"></sqlParm>
+		<sqlParm binding="remark" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from scdw_unit  where pk_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

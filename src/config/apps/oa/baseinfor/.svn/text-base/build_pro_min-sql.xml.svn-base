@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.rep_code AS "repCode",
+			t.mino_name AS "minoName",
+			t.mino_upar AS "minoUpar",
+			t.mino_doar AS "minoDoar",
+			t.mino_upti AS "minoUpti",
+			t.mino_doti AS "minoDoti",
+			t.mino_memo AS "minoMemo"
+		FROM
+			build_pro_min t where t.rep_code=:proId
+		<#if (minoName?exists)>
+	   		and t.mino_name like concat("%",:minoName,"%")
+    	</#if>
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "buildProMin_pkId" ,t.rep_code as "repCode" ,t.mino_name as "minoName" ,t.mino_fun as "minoFun" ,t.mino_fun_cont as "minoFunCont" ,t.mino_upar as "minoUpar" ,t.mino_doar as "minoDoar" ,t.mino_toar as "minoToar" ,t.mino_buhi as "minoBuhi" ,t.mino_upti as "minoUpti" ,t.mino_doti as "minoDoti" ,t.mino_bule as "minoBule" ,t.mino_stty as "minoStty" ,t.mino_bafo as "minoBafo" ,t.mino_pele as "minoPele" ,t.mino_frle as "minoFrle" ,t.mino_asit as "minoAsit" ,t.mino_asty as "minoAsty" ,t.mino_ptrt as "minoPtrt" ,t.mino_baar as "minoBaar" ,t.mino_fcsp as "minoFcsp" ,t.mino_crdu as "minoCrdu" ,t.mino_ovti as "minoOvti" ,t.mino_isov as "minoIsov" ,t.mino_memo as "minoMemo" from build_pro_min t where t.pk_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into build_pro_min (pk_id,rep_code,mino_name,mino_fun,mino_fun_cont,mino_upar,mino_doar,mino_toar,mino_buhi,mino_upti,mino_doti,mino_bule,mino_stty,mino_bafo,mino_pele,mino_frle,mino_asit,mino_asty,mino_ptrt,mino_baar,mino_fcsp,mino_crdu,mino_ovti,mino_isov,mino_memo) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="repCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFun" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFunCont" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoUpar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoDoar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoToar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBuhi" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoUpti" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoDoti" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBule" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoStty" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBafo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoPele" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFrle" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoAsit" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoAsty" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoPtrt" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBaar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFcsp" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoCrdu" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoOvti" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoIsov" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoMemo" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update build_pro_min set 
+		rep_code=?,
+		mino_name=?,
+		mino_fun=?,
+		mino_fun_cont=?,
+		mino_upar=?,
+		mino_doar=?,
+		mino_toar=?,
+		mino_buhi=?,
+		mino_upti=?,
+		mino_doti=?,
+		mino_bule=?,
+		mino_stty=?,
+		mino_bafo=?,
+		mino_pele=?,
+		mino_frle=?,
+		mino_asit=?,
+		mino_asty=?,
+		mino_ptrt=?,
+		mino_baar=?,
+		mino_fcsp=?,
+		mino_crdu=?,
+		mino_ovti=?,
+		mino_isov=?,
+		mino_memo=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="repCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFun" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFunCont" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoUpar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoDoar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoToar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBuhi" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoUpti" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoDoti" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBule" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoStty" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBafo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoPele" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFrle" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoAsit" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoAsty" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoPtrt" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoBaar" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoFcsp" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoCrdu" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoOvti" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoIsov" type="java.lang.String"></sqlParm>
+		<sqlParm binding="minoMemo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="buildProMin_pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from build_pro_min  where pk_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

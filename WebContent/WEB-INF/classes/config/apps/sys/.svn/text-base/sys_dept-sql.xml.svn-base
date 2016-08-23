@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.dep_id AS "depId",
+			t.parent_dep AS "pId",
+			t.dep_name AS "depName",
+			t.dep_order as "depOrder"
+		FROM
+			sys_dept t
+		ORDER BY
+			t.dep_order ASC
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.dep_id as "depId" ,t.dep_name as "depName" ,t.dep_order as "depOrder" ,t.parent_dep as "parentDep" ,t.dep_manager as "depManager" from sys_dept t where t.dep_id=:id
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 列表 -->
+	<query id="leftDepTree" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.dep_id AS "depId",
+			t.parent_dep AS "pId",
+			t.dep_name AS "depName",
+			t.dep_order as "depOrder",
+			'true' as "open"
+		FROM
+			sys_dept t
+		ORDER BY
+			t.dep_order ASC
+		]]>
+		</sql>
+	</query>
+</query-infor>

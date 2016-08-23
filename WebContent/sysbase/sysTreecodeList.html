@@ -1,0 +1,76 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/sysbase/sysTreecodeList.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div data-options="region:'west',border:true,split:true" title=""
+		style="width: 50%;">
+		<div id="type_toolbar" style="display: none;">
+			<table border="0">
+				<tr>
+					<td style="padding-left: 10px;"><a id="btn" href="#"
+						class="easyui-linkbutton" onClick="type_add();"
+						data-options="iconCls:'icon-add'">新增</a></td>
+					<td style="padding-left: 10px;"><a id="btn" href="#"
+						class="easyui-linkbutton" onClick="type_edit();"
+						data-options="iconCls:'icon-edit'">编辑</a></td>
+					<td style="padding-left: 10px;"><a id="btn" href="#"
+						class="easyui-linkbutton" onClick="type_del();"
+						data-options="iconCls:'icon-remove'">删除</a></td>
+				</tr>
+			</table>
+			<form id="type_searchForm">
+				<table border="0">
+					<tr>
+						<td>查询</td>
+						<td><input name="title" id="title" style="width:100px;" />
+						</td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:type_search();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-search'">查询</a></td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:type_resetSearch();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-redo'">重置查询</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+	<!-- 树形字典列表 -->
+	<div data-options="region:'center',border:true,split:true" title="">
+		<div id="toolbar" style="display: none;">
+			<table border="0">
+				<tr>
+					<td style="padding-left: 10px;"><a id="addCodeBtn" href="#"
+						class="easyui-linkbutton" onClick="add();"
+						data-options="iconCls:'icon-add',disabled:true">新增</a></td>
+					<td style="padding-left: 10px;"><a id="addSubBtn" href="#"
+						class="easyui-linkbutton" onClick="addSub();"
+						data-options="iconCls:'icon-add',disabled:true">添加子项</a></td>
+					<td style="padding-left: 10px;"><a id="editCodeBtn" href="#"
+						class="easyui-linkbutton" onClick="edit();"
+						data-options="iconCls:'icon-edit',disabled:true">编辑</a></td>
+					<td style="padding-left: 10px;"><a id="delCodeBtn" href="#"
+						class="easyui-linkbutton" onClick="del();"
+						data-options="iconCls:'icon-remove',disabled:true">删除</a></td>
+				</tr>
+			</table>
+			<form id="searchForm">
+				<input type="hidden" id="tId" name="tId">
+				<table border="0">
+					<tr>
+						<td>查询请根据业务需要自行开发:</td>
+						<td><input name="title" id="title" style="width:100px;" />
+						</td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:search();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-search'">查询</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table id="treeGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</html>

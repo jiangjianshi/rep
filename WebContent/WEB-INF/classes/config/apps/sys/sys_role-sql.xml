@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,t.role_name as "roleName" ,t.role_code as "roleCode" ,t.role_type as "roleType" from sys_role t
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.pk_id as "pkId" ,t.role_name as "roleName" ,t.role_code as "roleCode" ,t.role_type as "roleType" from sys_role t where t.pk_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into sys_role (pk_id,role_name,role_code,role_type) values (?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleType" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_role set 
+		role_name=?,
+		role_code=?,
+		role_type=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="roleName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="roleType" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_role  where role_code=?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 删除角色时关联删除 “用户-角色” -->
+	<query id="del_user_role" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_user_role where role_code=?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除角色时关联删除 “角色-权限” -->
+	<query id="del_role_right" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from sys_role_right where role_code=?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 添加用户 -->
+	<query id="addUserRole" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO sys_user_role (
+			pk_id,
+			role_code,
+			user_id
+		)
+		VALUES
+			(?, ?, ?)
+		]]>
+		</sql>
+		<sqlParm binding="pk_id" type="java.lang.String" defaultValue="[PrimaryKey]"></sqlParm>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="userId" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 删除角色时关联删除 -->
+	<query id="delUserRole_byRole" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_user_role where role_code = ?
+		]]>
+		</sql>
+		<sqlParm binding="roleCode" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 删除用户时关联删除 -->
+	<query id="delUserRole_byUser" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		DELETE from sys_user_role where user_id = ?
+		]]>
+		</sql>
+		<sqlParm binding="userId" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- getObjInfor -->
+	<query id="isHaveRightByUserId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t1.role_code
+		FROM
+			sys_role_right t1,
+			sys_user_role t2
+		WHERE
+			t1.role_code = t2.role_code
+		AND t2.user_id = :userId
+		AND t1.right_code = :rightCode
+		]]>
+		</sql>
+	</query>
+</query-infor>

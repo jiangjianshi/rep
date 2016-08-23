@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.approval_infor_id AS "approvalInforId",
+			t.pro_id AS "proId",
+			t.pro_file_id AS "proFileId",
+			t.approval_state AS "approvalState",
+			f.file_name as "fileName"
+		FROM
+			approval_infor t
+		left JOIN project_file f on f.pro_file_id=t.pro_file_id
+		where t.pro_id=:proId
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into approval_infor (approval_infor_id,pro_id,pro_file_id,approval_state) values (?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="approvalInforId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proFileId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="approvalState" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update approval_infor set 
+		approval_state=?
+		where approval_infor_id=?
+		]]>
+		</sql>
+		<sqlParm binding="approvalState" type="java.lang.String"></sqlParm>
+		<sqlParm binding="approvalInforId" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

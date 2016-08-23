@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	
+	<!-- getTempUserInfor -->
+	<query id="getTempUserInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.user_id AS "userId",
+			t.username AS "username",
+			t. PASSWORD AS "password",
+			t.realname AS "realname",
+			t.receive_email as "receiveEmail"
+		from sys_user t where t.pro_id=:proId
+		]]>
+		</sql>
+	</query>
+	
+	
+	<!-- 更新 -->
+	<query id="updateTempUser" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update sys_user set 
+		receive_email=?
+		where user_id=?
+		]]>
+		</sql>
+		<sqlParm binding="receiveEmail" type="java.lang.String"></sqlParm>
+		<sqlParm binding="userId" type="java.lang.String"></sqlParm>
+	</query>
+</query-infor>

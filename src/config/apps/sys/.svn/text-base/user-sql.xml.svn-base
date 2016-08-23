@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 用户登录 -->
+	<query id="userLogin" type="search">
+		<sql>
+		<![CDATA[ 
+		select t.*,ur.role_code as "roleCode" from sys_user t
+		left join sys_user_role ur on ur.user_id=t.user_id
+		 where t.username=:username and t.password=:password
+		]]>
+		</sql>
+	</query>
+	<!-- 选择用户 -->
+	<query id="selUserList" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from sys_user t where t.user_id not in (select user_id from sys_user_role where role_code = :roleCode)
+		]]>
+		</sql>
+	</query>
+</query-infor>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 合同列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.cont_no AS "contNo",
+			t.cont_amt AS "contAmt",
+			t.price AS "price",	
+			t.pro_id AS "proId",
+			t.cont_sdate AS "contSdate",
+			t.cont_edate AS "contEdate",
+			t.cont_real_amt AS "contRealAmt",
+			t.cont_sta AS "contSta"
+		FROM
+			fn_contract t
+		where  1=1
+		<#if (contNo?exists)>
+	   		and t.cont_no like concat("%",:contNo,"%")
+    	</#if>
+		<#if (contSta?exists)>
+	   		and t.cont_sta = :contSta
+    	</#if>
+		order by t.pk_id desc
+		]]>
+		</sql>
+	</query>
+	
+	
+	<!-- selectByPk -->
+	<query id="selectById" type="search">
+		<sql>
+		<![CDATA[ 
+			SELECT
+			t.pk_id AS "pkId",
+			t.cont_no AS "contNo",
+			t.cont_amt AS "contAmt",
+			t.price AS "price",	
+			t.pro_id AS "proId",
+			t.cont_sdate AS "contSdate",
+			t.cont_edate AS "contEdate",
+			t.cont_real_amt AS "contRealAmt",
+			t.cont_sta AS "contSta"
+		FROM
+			fn_contract t
+		where  
+			t.pk_id =:id
+		]]>
+		</sql>
+	</query>
+	
+		<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update fn_contract set 
+		cont_no=?,
+		cont_amt=?,
+		price=?,
+		pro_id=?,
+		cont_sdate=?, 
+		cont_edate=?,
+		cont_real_amt=?,
+		cont_sta=?
+		where pk_id=?
+		]]>
+		</sql>
+		<sqlParm binding="contNo" type="java.lang.String"></sqlParm>
+		<sqlParm binding="contAmt" type="java.lang.BigDeciaml"></sqlParm>
+		<sqlParm binding="price" type="java.lang.BigDeciaml"></sqlParm>
+		<sqlParm binding="proId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="contSdate" type="java.lang.String"></sqlParm>
+		<sqlParm binding="contEdate" type="java.lang.String"></sqlParm>
+		<sqlParm binding="contRealAmt" type="java.lang.String"></sqlParm>
+		<sqlParm binding="contSta" type="java.lang.String"></sqlParm>
+		<sqlParm binding="pkId" type="java.lang.String"></sqlParm>
+	</query>
+
+
+</query-infor>

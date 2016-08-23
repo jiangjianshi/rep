@@ -1,0 +1,172 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script>
+var proId = "${proId}";
+var majorId = "${majorId}"
+function checkDetailSubSave(applyStatus){
+	$.messager.progress({text:'系统处理中...'}); 
+	var url = basePath + "/oa/check/proofreadDetailSubSave.c";
+	$('#submitForm').form('submit', {
+		url : url,
+		onSubmit: function(param){    
+	        param.applyStatus = applyStatus;    
+	        param.proId = proId;    
+	        param.majorId = majorId;    
+	    },
+		success : function(data) {
+			var result = eval('(' + data + ')');
+			if (result.isSuccess) {
+				alert(result.msg);
+				window.location.reload(true);
+			} else {
+				alert(result.msg);
+			}
+		}
+	});
+}
+$(document).ready(function() {
+	
+}); // $(document).ready--end
+</script>
+</head>
+<style>
+</style>
+<body>
+<div class="msgbox1">
+	<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+		<tr>
+			<td class="label" style="width: 80px;" align="right"><b>审查专业:</b></td>
+			<td align="center">
+				${curMajorInfor.majorName!''}  &nbsp;&nbsp;&nbsp;&nbsp;<font color=red>${curMajorInfor.checkResult!''}</font>
+			</td>
+			<td class="label" style="width: 80px;" align="right"><b>审查人员:</b></td>
+			<td align="center">
+				${curMajorInfor.checkUser!''} 
+			</td>
+			<td class="label" style="width: 80px;" align="right"><b>复审人员:</b></td>
+			<td align="center">
+				${curMajorInfor.proofreadUser!''}
+			</td>
+		</tr>
+	</table>  
+</div>
+<form id="submitForm">
+	<table border="0" cellspacing="0" cellpadding="0" id="opinionList"
+		class="formTable">
+			<tr>
+				<td class="label" style="width: 50px;" align="center">反馈轮次</td>
+				<td class="label" style="width: 50px;" align="center">单体</td>
+				<td class="label" style="width: 50px;" align="center">图号</td>
+				<td class="label" style="width: 120px;" align="center">审查意见</td>
+				<td class="label" style="width: 120px;" align="center">设计院反馈</td>
+				<td class="label" style="width: 80px;" align="center">规范编号</td>
+			</tr>
+			
+			<#if (opinionList?exists)&&(opinionList?size>0)>
+				<tr>
+					<td align="center" rowspan="${opinionList?size+1}">
+						<font color=red>1</font>
+					</td>
+				</tr>
+				<#list opinionList as opinionInfor>
+					<tr>
+						<td align="center">
+							${opinionInfor.minoName!''}
+						</td>
+						<td>
+							${opinionInfor.opinCode!''}
+						</td>
+						<td>
+							<textarea disabled="disabled" rows="2" cols="32">${opinionInfor.opinOption!''}</textarea>	
+						</td>
+						<td>
+							<textarea disabled="disabled" rows="2" cols="32">${opinionInfor.opinFeedback!''}</textarea>	
+						</td>
+						<td>
+							${opinionInfor.opinSpecNum!''}
+						</td>
+					</tr>
+				</#list>
+				
+				
+				<#list proofreadOpinionList as opinionInfor>
+					<tr>
+						<td align="center">
+							<font color=red>${opinionInfor.round!''}</font>
+						</td>
+						<td align="center">
+							&nbsp;
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<textarea disabled="disabled" rows="2" cols="32">${opinionInfor.opinOption!''}</textarea>	
+						</td>
+						<td>
+							<textarea disabled="disabled" rows="2" cols="32">${opinionInfor.opinFeedback!''}</textarea>	
+						</td>
+						<td>
+							&nbsp;
+						</td>
+					</tr>
+				</#list>
+				
+				
+				<#if (curMajorInfor.check_result == 'yfk') && (curLoginUserId=curMajorInfor.proofreadUserId)>
+				<tr>
+					<td align="center">
+						<font color=red>${maxRound+1}</font>
+					</td>
+					<td align="center">
+						&nbsp;
+					</td>
+					<td>
+						&nbsp;
+					</td>
+					<td>
+						<input name="maxRound" type="hidden" value="${maxRound}"/>
+						<textarea name="opinOption" id="opinOption" 
+								 placeholder="请输入审查意见"
+								rows="3" cols="32" class="easyui-validatebox"></textarea>	
+					</td>
+					<td>
+						&nbsp;
+					</td>
+					<td>
+						&nbsp;
+					</td>
+				</tr>
+				</#if>
+			<#else>
+				<tr>
+					<td align="center" colspan="6">
+						合格
+					</td>
+				</tr>
+			</#if>
+	</table>
+</form>
+
+<#if (curMajorInfor.check_result == 'yfk') && (curLoginUserId=curMajorInfor.proofreadUserId)>
+	<div class="msgbox1">
+		<table border="0" cellspacing="0" cellpadding="0" class="formTable">
+			<tr>
+				<td class="label" style="width: 80px;" align="right"><b>审查操作:</b></td>
+				<td style="" align="center">
+					<a title="审查合格" id="hg_btn" href="javascript:void(0);" class="easyui-linkbutton"
+							iconCls="icon-ok"  data-options="disabled:false"
+							onclick="checkDetailSubSave('hg');">审查合格</a> 
+				</td>
+				<td style="" align="center">
+					<a title="所审专业将进入复审阶段" id="dfk_btn" href="javascript:void(0);" class="easyui-linkbutton quicktip"
+							iconCls="icon-ok"  data-options="disabled:false"
+							onclick="checkDetailSubSave('dfk');">审查提交</a> 
+				</td>
+			</tr>
+		</table>  
+	</div>
+</#if>
+
+</body>
+</html>

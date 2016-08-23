@@ -1,0 +1,40 @@
+﻿<#include "/sysbase/common/include.html"/>
+<title></title>
+<script type="text/javascript" src="${basePath}/oa/baseinfor/scdwunitList.js"></script>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="add();"
+					data-options="iconCls:'icon-add'">新增</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="edit();"
+					data-options="iconCls:'icon-edit'">编辑</a></td>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="del();"
+					data-options="iconCls:'icon-remove'">删除</a></td>
+			</tr>
+		</table>
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>名称:</td>
+					<td><input name="name" id="name" style="width:100px;" />
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-redo'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</html>

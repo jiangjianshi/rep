@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		select apply_major_id,major_name,relation_role,order_code,apply_pro_type from apply_major t
+		]]>
+		</sql>
+	</query>
+	<!-- getObjInfor -->
+	<query id="getObjInfor" type="search">
+		<sql>
+		<![CDATA[ 
+		select apply_major_id,major_name,relation_role,order_code,apply_pro_type from apply_major t where t.apply_major_id=:id
+		]]>
+		</sql>
+	</query>
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		insert into apply_major (apply_major_id,major_name,relation_role,order_code,apply_pro_type) values (?,?,?,?,?)
+		]]>
+		</sql>
+		<sqlParm binding="apply_major_id" type="java.lang.String"></sqlParm>
+		<sqlParm binding="major_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="relation_role" type="java.lang.String"></sqlParm>
+		<sqlParm binding="order_code" type="java.lang.String"></sqlParm>
+		<sqlParm binding="apply_pro_type" type="java.lang.String"></sqlParm>
+	</query>
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update apply_major set major_name =?,relation_role =?,order_code =?,apply_pro_type=? where apply_major_id=?
+		]]>
+		</sql>
+		<sqlParm binding="major_name" type="java.lang.String"></sqlParm>
+		<sqlParm binding="relation_role" type="java.lang.String"></sqlParm>
+		<sqlParm binding="order_code" type="java.lang.String"></sqlParm>
+		<sqlParm binding="apply_pro_type" type="java.lang.String"></sqlParm>
+		<sqlParm binding="apply_major_id" type="java.lang.String"></sqlParm>
+
+	</query>
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from apply_major  where apply_major_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>

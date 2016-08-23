@@ -1,0 +1,80 @@
+10
+
+dir
+100
+http://vip.svnspot.com/liushengit.rep/trunk/rep/WebContent
+http://vip.svnspot.com/liushengit.rep
+
+
+
+2015-05-03T06:14:19.191832Z
+100
+sywpc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7a42831b-0bbd-e76e-61ee-88445a0fa1fa
+
+oa
+dir
+
+META-INF
+dir
+
+WEB-INF
+dir
+
+common
+dir
+
+sysbase
+dir
+
+resources
+dir
+
+error.html
+file
+
+
+
+
+2015-06-20T13:53:01.727614Z
+4ecb9da84af6b15851fa7d64ecd50a26
+2015-03-13T14:58:51.547870Z
+10
+sywpc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+318
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<query id="getParamValueByCode" type="search">
+		<sql>
+		<![CDATA[ 
+		select * from fn_param t where t.param_code=:paramCode
+		]]>
+		</sql>
+	</query>
+	
+</query-infor>

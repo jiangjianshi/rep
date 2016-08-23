@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/liushengit.rep/!svn/ver/117/trunk/rep/src/com/css/sysbase/service
+END
+UserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/115/trunk/rep/src/com/css/sysbase/service/UserService.java
+END
+SysTreeTypeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/61/trunk/rep/src/com/css/sysbase/service/SysTreeTypeService.java
+END
+RoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/117/trunk/rep/src/com/css/sysbase/service/RoleService.java
+END
+WwwService.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/liushengit.rep/!svn/ver/103/trunk/rep/src/com/css/sysbase/service/WwwService.java
+END
+SysDepService.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/liushengit.rep/!svn/ver/115/trunk/rep/src/com/css/sysbase/service/SysDepService.java
+END
+CommonService.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/sysbase/service/CommonService.java
+END
+SysBaseService.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/liushengit.rep/!svn/ver/4/trunk/rep/src/com/css/sysbase/service/SysBaseService.java
+END
+SysTreecodeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/liushengit.rep/!svn/ver/61/trunk/rep/src/com/css/sysbase/service/SysTreecodeService.java
+END
+SysRightService.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/liushengit.rep/!svn/ver/111/trunk/rep/src/com/css/sysbase/service/SysRightService.java
+END

@@ -1,0 +1,306 @@
+<#include "/sysbase/common/include.html"/>
+<title>Insert title here</title>
+<script>
+var proId = '${proId}';
+$(document).ready(function() {
+	
+}); // $(document).ready--end
+</script>
+<script type="text/javascript" src="${basePath}/resources/js/IncJs.a?c=yes_no&c=is_qualify&c=is_entrust&c=is_receive&c=zzdj&c=payment_statu&c=sczzdj&c=zdxm&c=xmlx&c=pro_grade&c=pro_property&c=pro_scale&c=apply_type&c=min_jzdj&c=min_jglx&c=min_jcxs&c=min_rfdj&c=min_kzsf"></script>
+<script type="text/javascript" src="${basePath}/oa/contract/viewContract.js"></script>
+</head>
+<style>
+tr.separationLine td{
+	background-color: #CEE0F7;height: 2px;line-height: 2px;
+}
+</style>
+<body>
+<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+	class="formTable">
+		<tr>
+			<td class="label" style="width: 80px;" align="right">合同号:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.cont_no!''}" />
+			</td>
+			<td class="label" style="width: 80px;" align="right">合同额:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.con_amt!''}" />
+			</td>
+			<td class="label" style="width: 80px;" align="right">合同单价:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.con_price!''}" />
+			</td>
+			<td class="label" style="width: 80px;" align="right">项目号:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.pro_number!''}" />
+			</td>
+		</tr>
+		<tr>
+			<td class="label" style="width: 80px;" align="right">合同开始时间:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.con_st!''}" />
+			</td>
+			<td class="label" style="width: 80px;" align="right">合同结束时间:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.con_en!''}" />
+			</td>
+			<td class="label" style="width: 80px;" align="right">合同实收款:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.con_real_amt!''}" />
+			</td>
+			<td class="label" style="width: 80px;" align="right">合同状态:</td>
+			<td>
+				<input disabled="disabled"
+					class="easyui-validatebox class1"
+					type="text" style="width: 80px;"
+					value="${contractInfor.con_sta!''}" />
+			</td>
+		</tr>
+</table>
+<div id="tt" class="easyui-tabs" style="width:100%;height:839px;margin-top: 5px;">   
+    <div title="项目情况" data-options="closable:false" style="overflow:auto; padding: 10px;">   
+       	<form id="buildProStat_submitForm">
+			<input type="hidden" name="buildProStat_pkId" value="${buildStat.buildProStat_pkId!''}"/>
+			<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+				class="formTable">
+					<tr>
+						<td class="label" style="width: 80px;" align="right">交费情况:</td>
+						<td><input id="statRep" name="statRep"  value="${buildStat.statRep!''}"
+								class="easyui-validatebox class1" data-options="disabled:true" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">委托情况:</td>
+						<td><input id="statEntr" name="statEntr"  value="${buildStat.statEntr!''}"
+								class="easyui-validatebox class1" data-options="disabled:true" 
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">审图意见:</td>
+						<td><input id="statExam" name="statExam"  value="${buildStat.statExam!''}"
+								class="easyui-validatebox class1" data-options="disabled:true" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">施工图:</td>
+						<td><input id="statShdr" name="statShdr"  value="${buildStat.statShdr!''}"
+								class="easyui-validatebox class1" data-options="disabled:true" 
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">合格书:</td>
+						<td><input id="statElig" name="statElig"  value="${buildStat.statElig!''}"
+								class="easyui-validatebox class1" data-options="disabled:true" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">可见性:</td>
+						<td><input id="statLook" name="statLook"  value="${buildStat.statLook!''}"
+								class="easyui-validatebox class1" data-options="disabled:true" 
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">审图费用:</td>
+						<td colspan="3">
+						<input id="statExamAmt" name="statExamAmt"  value="${buildStat.statExamAmt!''}"
+								class="easyui-validatebox easyui-numberbox class1" data-options="min:0,precision:2,disabled:true" 
+								type="text" style="width: 150px;"/>
+						</td>
+					</tr>
+			</table>
+		</form>
+    </div>  <!-- 项目情况 end -->  
+    <div title="子项信息" data-options="iconCls:'icon-reload',closable:false" style="overflow:auto; padding: 10px;">   
+    	<form id="buildProMin_submitForm">
+			<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+				class="formTable">
+					<tr>
+						<td class="label" style="width: 80px;" align="right">单位名称:</td>
+						<td><input id="minoName" name="minoName" disabled="disabled"
+								class="easyui-validatebox class1"
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">项目功能:</td>
+						<td><input id="minoFun" name="minoFun"
+								class="easyui-validatebox class1" disabled="disabled"
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">功能说明:</td>
+						<td><input id="minoFunCont" name="minoFunCont"
+								class="easyui-validatebox class1" disabled="disabled"
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">地上面积:</td>
+						<td>
+						<input id="minoUpar" name="minoUpar"
+								class="easyui-validatebox easyui-numberbox class1" data-options="required:true,min:0,precision:2,disabled:true" 
+								type="text" style="width: 150px;"/>
+						</td>
+						<td class="label" style="width: 80px;" align="right">地下面积:</td>
+						<td>
+						<input id="minoDoar" name="minoDoar"
+								class="easyui-validatebox easyui-numberbox class1" data-options="required:true,min:0,precision:2,disabled:true" 
+								type="text" style="width: 150px;"/>
+						</td>
+						<td class="label" style="width: 80px;" align="right">总建筑面积:</td>
+						<td>
+						<input id="minoToar" name="minoToar"
+								class="easyui-validatebox easyui-numberbox class1" data-options="required:true,min:0,precision:2,disabled:true" 
+								type="text" style="width: 150px;"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">建筑高度:</td>
+						<td>
+						<input id="minoBuhi" name="minoBuhi"
+								class="easyui-validatebox easyui-numberbox class1" disabled="disabled"
+								type="text" style="width: 150px;"/>
+						</td>
+						<td class="label" style="width: 80px;" align="right">地上层数:</td>
+						<td><input id="minoUpti" name="minoUpti"
+								class="easyui-validatebox class1" disabled="disabled"
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">地下层数:</td>
+						<td><input id="minoDoti" name="minoDoti"
+								class="easyui-validatebox class1" disabled="disabled"
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">建筑等级:</td>
+						<td><input id="minoBule" name="minoBule"  disabled="disabled"
+								class="easyui-validatebox class1"
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">结构类型:</td>
+						<td><input id="minoStty" name="minoStty" disabled="disabled"
+								class="easyui-validatebox class1" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">基础形式:</td>
+						<td><input id="minoBafo" name="minoBafo" disabled="disabled"
+								class="easyui-validatebox class1"  
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">人防等级:</td>
+						<td><input id="minoPele" name="minoPele" disabled="disabled"
+								class="easyui-validatebox class1" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">耐火等级:</td>
+						<td><input id="minoFrle" name="minoFrle" disabled="disabled"
+								class="easyui-validatebox class1" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">抗震设防烈度:</td>
+						<td><input id="minoAsit" name="minoAsit" disabled="disabled"
+								class="easyui-validatebox class1" 
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">抗震设防类别:</td>
+						<td><input id="minoAsty" name="minoAsty" disabled="disabled"
+								class="easyui-validatebox class1" 
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">容积率:</td>
+						<td>
+						<input id="minoPtrt" name="minoPtrt"
+								class="easyui-validatebox easyui-numberbox class1" data-options="disabled:true,min:0,precision:2" 
+								type="text" style="width: 150px;"/>
+						</td>
+						<td class="label" style="width: 80px;" align="right">基底面积:</td>
+						<td>
+						<input id="minoBaar" name="minoBaar"
+								class="easyui-validatebox easyui-numberbox class1" data-options="disabled:true,min:0,precision:2" 
+								type="text" style="width: 150px;"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">厂房跨度:</td>
+						<td>
+						<input id="minoFcsp" name="minoFcsp"
+								class="easyui-validatebox easyui-numberbox class1" data-options="disabled:true,min:0,precision:2" 
+								type="text" style="width: 150px;"/>
+						</td>
+						<td class="label" style="width: 80px;" align="right">吊车吨位:</td>
+						<td>
+						<input id="minoCrdu" name="minoCrdu"
+								class="easyui-validatebox easyui-numberbox class1" data-options="disabled:true,min:0,precision:2" 
+								type="text" style="width: 150px;"/>
+						</td>
+						<td class="label" style="width: 80px;" align="right">超限高层:</td>
+						<td><input id="minoOvti" name="minoOvti"
+								class="easyui-validatebox class1" disabled="disabled"
+								type="text" style="width: 150px;"/></td>
+					</tr>
+					<tr>
+						<td class="label" style="width: 80px;" align="right">是否超限:</td>
+						<td><input id="minoIsov" name="minoIsov"
+								class="easyui-validatebox class1" disabled="disabled"
+								type="text" style="width: 150px;"/></td>
+						<td class="label" style="width: 80px;" align="right">备注:</td>
+						<td colspan="3">
+						<textarea id="minoMemo" disabled="disabled" name="minoMemo" rows="3" cols="30" class="easyui-validatebox class1"></textarea>
+						</td>
+					</tr>
+			</table>
+		</form>
+        <div id="buildProMin_toolbar" style="display: none;">
+        	<div class="shadow">
+				<div class="msgbox1">注：双击记录行，可查看单体详情！</div>
+			</div>
+			<form id="searchForm" style="display: none;">
+				<table border="0">
+					<tr>
+						<td>单体名称:</td>
+						<td><input name="minoName" id="minoName" style="width:100px;" />
+						</td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:buildProMin_search();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-search'">查询</a></td>
+						<td style="padding-left: 10px;"><a id="btn"
+							href="javascript:buildProMin_resetSearch();" class="easyui-linkbutton"
+							data-options="iconCls:'icon-redo'">重置</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table id="buildProMin_dataGrid" data-options="height:'367'"></table>
+    </div>  <!-- 子项信息 end -->
+    <div title="送审资料" data-options="closable:false" style="overflow:auto; padding: 10px;">  
+    	<form id="approvalInfor_submitForm"> 
+       	<#if (approvalInforList?exists)&&(approvalInforList?size>0)> 
+       		<table border="0" cellspacing="0" cellpadding="0" style="width:100%;"
+					class="formTable">
+			<#list approvalInforList as approvalInfor>
+					<tr>
+						<td style="width: 20px;" align="left">${approvalInfor_index+1}</td>
+						<td class="label" style="width: 750px;" align="left">${approvalInfor.fileName}</td>
+						<td style="width: 140px;">
+						<#if approvalInfor.approvalState == "yy">
+							已有
+						<#elseif  approvalInfor.approvalState == "sq">
+							尚缺
+						<#else>
+							未知
+						</#if>
+						</td>
+					</tr>
+			</#list>
+			</table>
+		</#if>
+		</form>
+    </div>  <!-- 送审资料 end -->  
+</div>  
+</body>
+</html>

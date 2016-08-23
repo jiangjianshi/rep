@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 一审列表 and t.flow_status='1004' -->
+	<query id="checkList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.pk_id AS "pkId",
+			t.pro_name AS "proName",
+			t.build_unit AS "buildUnit",
+			t.kcdw AS "kcdw",	
+			t.sjdw AS "sjdw",
+			t.total_area AS "totalArea",
+			t.total_amount AS "totalAmount",
+			t.accept_user AS "acceptUser",
+			t.receive_time AS "receiveTime",
+			t.accept_time AS "acceptTime",	
+			c.code_name as "flowStatus"
+		FROM
+			build_pro t
+		left JOIN sys_code c on c.ctype_code='project_flow_status' and c.code_value=t.flow_status
+		where t.pk_id in (
+			select DISTINCT t.pro_id from apply_major_pro t where t.check_user = :curLoginUserId
+		) 
+		<#if (proName?exists)>
+	   		and t.pro_name like concat("%",:proName,"%")
+    	</#if>
+		<#if (flowStatus?exists)>
+	   		and t.flow_status = :flowStatus
+    	</#if>
+		order by t.create_time desc
+		
+		]]>
+		</sql>
+	</query>
+	<!-- 单体下拉框  -->
+	<query id="minoList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.mino_name AS "minoName",
+			t.pk_id AS "minoId"
+		FROM
+			build_pro_min t
+		where t.rep_code=:proId
+		]]>
+		</sql>
+	</query>
+	
+	<!-- 项目审查页面-加载专业tab页 title -->
+	<query id="getCheckMajorNameForTabs" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.apply_major_id AS "majorId",
+			t.major_name AS "majorName",
+			cu.realname as "checkUserName",
+			c.code_name as "checkResult",
+			pu.realname as "proofreadUserName"
+		FROM apply_major t
+		inner JOIN apply_major_pro amp on amp.major_id=t.apply_major_id and amp.pro_id=:proId
+		left JOIN sys_user cu on cu.user_id=amp.check_user
+		left JOIN sys_user pu on pu.user_id=amp.proofread_user
+		left JOIN sys_code c on c.ctype_code='major_check_status' and c.code_value=amp.check_result
+		where 1=1 
+		ORDER BY t.order_code ASC
+	]]>
+		</sql>
+	</query>
+	
+	<!-- 更新 专业审查状态 -->
+	<query id="updateMajorApplyStatus" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update apply_major_pro set check_result=:applyStatus where major_id=:majorId and pro_id=:proId
+		]]>
+		</sql>
+	</query>
+	<!-- 审查提交时判断各专业状态 -->
+	<query id="IsAllMajors_isOk" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			DISTINCT t.check_result as "checkResult"
+		FROM
+			apply_major_pro t
+		WHERE
+			t.pro_id = :proId
+		ORDER BY t.check_result asc
+		]]>
+		</sql>
+	</query>
+	<!-- 设计院反馈时判断各专业状态 -->
+	<query id="feedBack_IsAllMajors_isOk" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			DISTINCT t.check_result as "checkResult"
+		FROM
+			apply_major_pro t
+		WHERE
+			t.pro_id = :proId
+			and t.check_result != 'hg'
+		ORDER BY t.check_result asc
+		]]>
+		</sql>
+	</query>
+	<!-- 更新 专业审查意见 的审查阶段状态 -->
+	<query id="updateApplyOpinionOpinFlag" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update apply_opinion set opin_flag=:proStatus where  pro_id=:proId
+		]]>
+		</sql>
+	</query>
+	
+</query-infor>

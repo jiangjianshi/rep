@@ -1,0 +1,36 @@
+<#include "/sysbase/common/include.html"/>
+<title>合同管理</title>
+<script type="text/javascript" src="${basePath}/oa/contract/contractList.js"></script>
+</head>
+<body>
+<body class="easyui-layout" data-options="fit:true,border:false">
+	<div id="toolbar" style="display: none;">
+		<table border="0">
+			<tr>
+				<td style="padding-left: 10px;"><a id="btn" href="#"
+					class="easyui-linkbutton" onClick="edit();"
+					data-options="iconCls:'icon-edit'">编辑合同</a></td>
+			</tr>
+		</table>
+		<form id="searchForm">
+			<table border="0">
+				<tr>
+					<td>合同查询:</td>
+					<td><input name="contNo" id="contNo" style="width:100px;" />
+					</td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:search();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search'">查询</a></td>
+					<td style="padding-left: 10px;"><a id="btn"
+						href="javascript:resetSearch();" class="easyui-linkbutton"
+						data-options="iconCls:'icon-redo'">重置</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div data-options="region:'center',fit:true,border:false">
+		<table id="dataGrid" data-options="fit:true,border:false"></table>
+	</div>
+</body>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<#include "/sysbase/common/include.html"/>
+<link href="${basePath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${basePath}/resources/bootstrap/dist/css/bootstrapValidator.css" rel="stylesheet"/>
+<script src="${basePath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${basePath}/resources/bootstrap/dist/js/bootstrapValidator.js"></script>
+<title></title>
+<style>
+.editerImgTable {
+	width: 110px;height:160px;
+	border-left: solid 0px;
+	border-top: solid 0px;
+	border-right: solid 1px #ddd;
+	border-bottom: solid 1px #ddd;
+	float: left;margin: 4px;
+}
+.editerImgTable td {
+	border-top: solid 1px #ddd;
+	border-left: solid 1px #ddd;
+	border-right: solid 0px;
+	border-bottom: solid 0px;
+	padding: 2px;
+	height: 30px;
+	text-align: center;
+	font-size: 12px;
+}
+.btn-lg, .btn-group-lg > .btn {
+    border-radius: 6px;
+    font-size: 12px;
+    line-height: 23px;
+      padding: 0px 0px;
+}
+</style>
+<script type="text/javascript">
+function selectImg(filePath){
+	getParentWindow().receiveImg(filePath)
+	Dialog.close();
+}
+</script>
+</head>
+<body>
+<form id="submitForm" method="post" enctype="multipart/form-data"
+	action="${basePath}/common/uploadEditerImg.c" class="form-horizontal">
+<table border="0" cellspacing="0" cellpadding="0" class="editerImgTable" style="width: 500px;height:30px;">
+	<tr>
+		<td style="width: 100px;">上传图片：</td>
+		<td style="width: 150px;">
+			<div class="col-lg-5">
+				<input name="imgFile" type="file" required/>
+			</div></td>
+		<td><button class="btn btn-lg btn-primary btn-block"
+				style="width: 100px; " type="submit">上传</button></td>
+	</tr>
+</table>
+</form>
+<div class="clear"></div>
+	<div style="display: block;">
+	<#if (dataList?exists)&&(dataList?size>0)> <#list dataList as img>
+		<table border="0" cellspacing="0" cellpadding="0" class="editerImgTable">
+			<tr>
+				<td valign="middle">
+				<img width="130" height="130" src="${basePath}/${img.filePath!''}" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<a href="javascript:selectImg('${basePath}/${img.filePath!''}');" class="easyui-linkbutton" 
+					data-options="iconCls:'icon-search'">选取</a>
+				</td>
+			</tr>
+		</table>
+	</#list> </#if>
+	</div>
+	<div class="clear"></div>
+	<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;" >
+		<tr>
+			<td>
+			<div class="meneame">
+				${pageInfo.pageHtml!''}
+				<form id="pageForm" method="post">
+					<input id="page" name="page" type="hidden" />
+				</form>
+				<script type="text/javascript">
+					var totalPages = ${pageInfo.totalPages!''};
+				</script>
+				<script src="${basePath}/resources/js/pageInfor.js" type="text/javascript" charset="utf-8"></script>
+			</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+

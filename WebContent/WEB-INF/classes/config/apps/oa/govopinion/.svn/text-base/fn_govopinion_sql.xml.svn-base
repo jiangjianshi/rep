@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<query id="govopinionList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			p.pk_id AS "proId",
+			p.pro_name as "proName",
+			go.*,
+			c.code_name as "flowStatus"
+		FROM
+			build_pro p
+		LEFT JOIN fn_gov_opinion go ON go.pro_id = p.pk_id
+		left JOIN sys_code c on c.ctype_code='project_flow_status' and c.code_value=p.flow_status
+		where 1=1
+		<#if (proName?exists)>
+	   		and p.pro_name like concat("%",:proName,"%")
+    	</#if>
+    	<#if (isHaveOpinion?exists)>
+	   		<#if (isHaveOpinion=='yes')>
+	   			and go.opin_id is not null
+	   		<#elseif (isHaveOpinion=='no')>		
+	   			and go.opin_id is null
+    		</#if>
+    	</#if>
+		]]>
+		</sql>
+	</query>
+	
+	
+	<query id="getGovopinionByProId" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			p.pk_id AS "proId",
+			p.pro_name as "proName",
+			go.*
+		FROM fn_gov_opinion go			
+		LEFT JOIN build_pro p ON go.pro_id = p.pk_id
+		where p.pk_id=:proId
+		]]>
+		</sql>
+	</query>
+	
+	
+	<!-- 添加 -->
+	<query id="addGovopinion" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO fn_gov_opinion (
+			opin_id,
+			pro_id,
+			opin_file_path,
+			opin_file_name,
+			update_time,
+			update_user
+		)
+		VALUES
+			(
+				?,?,?,?,?,?
+			)
+		]]>
+		</sql>
+		<sqlParm binding="opinId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinFilePath" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinFileName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="updateTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="updateUser" type="java.lang.String"></sqlParm>
+	</query>
+	
+	
+	<!-- 更新 -->
+	<query id="updateGovopinion" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update fn_gov_opinion set 
+		opin_file_path=?,
+		opin_file_name=?,
+		update_time=?,
+		update_user=?
+		where pro_id=?
+		]]>
+		</sql>
+		<sqlParm binding="opinFilePath" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinFileName" type="java.lang.String"></sqlParm>
+		<sqlParm binding="updateTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="updateUser" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proId" type="java.lang.String"></sqlParm>
+	</query>
+	
+</query-infor>

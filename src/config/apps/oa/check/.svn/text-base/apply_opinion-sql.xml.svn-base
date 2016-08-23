@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query-infor>
+	<!-- 列表 -->
+	<query id="searchList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.opin_id AS "opinId",
+			t.pro_id AS "proId",
+			t.major_id AS "majorId",
+			t.mino_ID AS "minoId",
+			m.mino_name AS "minoName",
+			t.opin_code AS "opinCode",
+			t.opin_option AS "opinOption",
+			t.opin_spec_num AS "opinSpecNum",
+			t.opin_feedback AS "opinFeedback",
+			t.round
+		FROM
+			apply_opinion t
+	left join build_pro_min m on m.pk_id=t.mino_ID
+		where t.pro_id=:proId and t.major_id=:majorId 
+		and t.round=1
+	order by t.create_time asc
+	]]>
+		</sql>
+	</query>
+	
+	<!-- 列表 -->
+	<query id="searchProofreadOpinionList" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT
+			t.opin_id AS "opinId",
+			t.pro_id AS "proId",
+			t.major_id AS "majorId",
+			t.mino_ID AS "minoId",
+			m.mino_name AS "minoName",
+			t.opin_code AS "opinCode",
+			t.opin_option AS "opinOption",
+			t.opin_spec_num AS "opinSpecNum",
+			t.opin_feedback AS "opinFeedback",
+			t.round
+		FROM
+			apply_opinion t
+	left join build_pro_min m on m.pk_id=t.mino_ID
+		where t.pro_id=:proId and t.major_id=:majorId 
+		and t.round!=1
+	order by t.create_time asc
+	]]>
+		</sql>
+	</query>
+	
+	<!-- 列表 -->
+	<query id="getMaxRound" type="search">
+		<sql>
+		<![CDATA[ 
+		SELECT	
+			max(t.round) as "maxRound"
+		FROM
+			apply_opinion t	
+		where t.pro_id=:proId and t.major_id=:majorId 
+		]]>
+		</sql>
+	</query>
+	
+	
+	<!-- 添加 -->
+	<query id="addObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO apply_opinion (
+			opin_id,
+			pro_id,
+			major_id,
+			round,
+			create_time
+		)
+		VALUES
+			(
+				?,?,?,?,?
+			)
+		]]>
+		</sql>
+		<sqlParm binding="opinId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="majorId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="round" type="java.lang.String"></sqlParm>
+		<sqlParm binding="createTime" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- 添加 -->
+	<query id="addProofreadOpinion" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		INSERT INTO apply_opinion (
+			opin_id,
+			pro_id,
+			major_id,
+			round,
+			create_time,
+			opin_option
+		)
+		VALUES
+			(
+				?,?,?,?,?,?
+			)
+		]]>
+		</sql>
+		<sqlParm binding="opinId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="proId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="majorId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="round" type="java.lang.String"></sqlParm>
+		<sqlParm binding="createTime" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinOption" type="java.lang.String"></sqlParm>
+		
+	</query>
+	
+	
+	<!-- 更新 -->
+	<query id="updateObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update apply_opinion set 
+		
+		mino_ID=?,
+		opin_code=?,
+		opin_option=?, 
+		opin_spec_num=?
+		
+		where opin_id=?
+		]]>
+		</sql>
+		<sqlParm binding="minoId" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinCode" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinOption" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinSpecNum" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinId" type="java.lang.String"></sqlParm>
+	</query>
+	
+	<!-- feedBackDetailSubSave-->
+	<query id="feedBackDetailSubSave" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		update apply_opinion set 		
+		opin_feedback=?		
+		where opin_id=?
+		]]>
+		</sql>
+		<sqlParm binding="opinFeedback" type="java.lang.String"></sqlParm>
+		<sqlParm binding="opinId" type="java.lang.String"></sqlParm>
+	</query>
+	
+	
+	<!-- 删除 -->
+	<query id="delObj" type="saveOrUpdate">
+		<sql>
+		<![CDATA[ 
+		delete from apply_opinion  where opin_id=:delId
+		]]>
+		</sql>
+	</query>
+</query-infor>
